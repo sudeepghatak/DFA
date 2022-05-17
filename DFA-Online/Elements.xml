@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="RootModule">
+    <File Path="App\app.js" Url="App/app.js" ReplaceContent="TRUE" />
+    <File Path="App\Dashboard\dashboardController.js" Url="App/Dashboard/dashboardController.js" ReplaceContent="TRUE" />
+    <File Path="App\appLauncher.js" Url="App/appLauncher.js" ReplaceContent="TRUE" />
+    <File Path="common\services\spUrlInfoService.js" Url="common/services/spUrlInfoService.js" ReplaceContent="TRUE" />
+    <File Path="common\services\common.services.js" Url="common/services/common.services.js" ReplaceContent="TRUE" />
+    <File Path="App\Dashboard\dashboardView.html" Url="App/Dashboard/dashboardView.html" ReplaceContent="TRUE" />
+    <File Path="App\Roles\roleListView.html" Url="App/Roles/roleListView.html" ReplaceContent="TRUE" />
+    <File Path="App\Roles\RoleListController.js" Url="App/Roles/RoleListController.js" ReplaceContent="TRUE" />
+    <File Path="App\Roles\roleEditView.html" Url="App/Roles/roleEditView.html" ReplaceContent="TRUE" />
+    <File Path="App\Roles\RoleEditController.js" Url="App/Roles/RoleEditController.js" ReplaceContent="TRUE" />
+    <File Path="common\services\roleResource.js" Url="common/services/roleResource.js" ReplaceContent="TRUE" />
+    <File Path="common\services\dfaDataService.js" Url="common/services/dfaDataService.js" ReplaceContent="TRUE" />
+    <File Path="common\services\environmentVariables.js" Url="common/services/environmentVariables.js" ReplaceContent="TRUE" />
+    <File Path="App\dfa-style.scss" Url="App/dfa-style.scss" ReplaceContent="TRUE" />
+    <File Path="App\dfa-style.css" Url="App/dfa-style.css" ReplaceContent="TRUE" />
+    <File Path="App\dfa-style.min.css" Url="App/dfa-style.min.css" ReplaceContent="TRUE" />
+    <File Path="App\Dashboard\dashboard.scss" Url="App/Dashboard/dashboard.scss" ReplaceContent="TRUE" />
+    <File Path="App\Dashboard\dashboard.css" Url="App/Dashboard/dashboard.css" ReplaceContent="TRUE" />
+    <File Path="App\Dashboard\dashboard.min.css" Url="App/Dashboard/dashboard.min.css" ReplaceContent="TRUE" />
+    <File Path="App\Person\DfaHolderListController.js" Url="App/Person/DfaHolderListController.js" ReplaceContent="TRUE" />
+    <File Path="App\Person\DfaHolderListView.html" Url="App/Person/DfaHolderListView.html" ReplaceContent="TRUE" />
+    <File Path="common\services\peopleResource.js" Url="common/services/peopleResource.js" ReplaceContent="TRUE" />
+    <File Path="common\services\emailService.js" Url="common/services/emailService.js" ReplaceContent="TRUE" />
+    <File Path="App\dfa-header.html" Url="App/dfa-header.html" ReplaceContent="TRUE" />
+    <File Path="App\dfa-header.scss" Url="App/dfa-header.scss" ReplaceContent="TRUE" />
+    <File Path="App\Person\dfaHolderListView.scss" Url="App/Person/dfaHolderListView.scss" ReplaceContent="TRUE" />
+    <File Path="App\Roles\Role.scss" Url="App/Roles/Role.scss" ReplaceContent="TRUE" />
+    <File Path="App\Roles\roleList.scss" Url="App/Roles/roleList.scss" ReplaceContent="TRUE" />
+    <File Path="App\dfaFakeLoader.html" Url="App/dfaFakeLoader.html" ReplaceContent="TRUE" />
+    <File Path="App\dfaFakeLoader.scss" Url="App/dfaFakeLoader.scss" ReplaceContent="TRUE" />
+    <File Path="common\directives\format.js" Url="common/directives/format.js" ReplaceContent="TRUE" />
+    <File Path="common\directives\formFocusInvalidInput.js" Url="common/directives/formFocusInvalidInput.js" ReplaceContent="TRUE" />
+    <File Path="App\Person\DfaHolderEditController.js" Url="App/Person/DfaHolderEditController.js" ReplaceContent="TRUE" />
+    <File Path="App\Person\DfaHolderEditView.html" Url="App/Person/DfaHolderEditView.html" ReplaceContent="TRUE" />
+    <File Path="common\services\userService.js" Url="common/services/userService.js" ReplaceContent="TRUE" />
+    <File Path="App\Person\dfaHolderEditView.scss" Url="App/Person/dfaHolderEditView.scss" ReplaceContent="TRUE" />
+    <File Path="App\SubDelegate\subDelegateListView.html" Url="App/SubDelegate/subDelegateListView.html" ReplaceContent="TRUE" />
+    <File Path="App\SubDelegate\SubDelegateListController.js" Url="App/SubDelegate/SubDelegateListController.js" ReplaceContent="TRUE" />
+    <File Path="App\SubDelegate\subDelegate.scss" Url="App/SubDelegate/subDelegate.scss" ReplaceContent="TRUE" />
+    <File Path="common\services\subDelegateResource.js" Url="common/services/subDelegateResource.js" ReplaceContent="TRUE" />
+    <File Path="App\SubDelegate\SubDelegateEditController.js" Url="App/SubDelegate/SubDelegateEditController.js" ReplaceContent="TRUE" />
+    <File Path="App\SubDelegate\subDelegateEditForm.html" Url="App/SubDelegate/subDelegateEditForm.html" ReplaceContent="TRUE" />
+    <File Path="App\ie-specific-stylesheet.scss" Url="App/ie-specific-stylesheet.scss" ReplaceContent="TRUE" />
+    <File Path="common\emailTemplates\testEmailTemplate.html" Url="common/emailTemplates/testEmailTemplate.html" ReplaceContent="TRUE" />
+    <File Path="common\emailTemplates\roleCreatedEmailTemplate.html" Url="common/emailTemplates/roleCreatedEmailTemplate.html" ReplaceContent="TRUE" />
+    <File Path="common\emailTemplates\assignRoleDfaHolderEmailTemplate.html" Url="common/emailTemplates/assignRoleDfaHolderEmailTemplate.html" ReplaceContent="TRUE" />
+    <File Path="common\emailTemplates\subDelegateEmailTemplate.html" Url="common/emailTemplates/subDelegateEmailTemplate.html" ReplaceContent="TRUE" />
+    <File Path="common\emailTemplates\sampleSignatureEmailTemplate.html" Url="common/emailTemplates/sampleSignatureEmailTemplate.html" ReplaceContent="TRUE" />
+    <File Path="common\emailTemplates\assignRoleCeoEgmEmailTemplate.html" Url="common/emailTemplates/assignRoleCeoEgmEmailTemplate.html" ReplaceContent="TRUE" />
+    <File Path="common\emailTemplates\assignRoleCeoEgmEmailTemplate.html" Url="common/emailTemplates/assignRoleCeoEgmEmailTemplate.html" ReplaceContent="TRUE" />
+
+    <File Path="common\emailTemplates\roleDeletedEmail.html" Url="common/emailTemplates/roleDeletedEmail.html" ReplaceContent="TRUE" />
+    <File Path="common\emailTemplates\assignRoleCompleteEmailTemplate.html" Url="common/emailTemplates/assignRoleCompleteEmailTemplate.html" ReplaceContent="TRUE" />
+    <File Path="common\emailTemplates\assignRoleDeclinedEmailTemplate.html" Url="common/emailTemplates/assignRoleDeclinedEmailTemplate.html" ReplaceContent="TRUE" />
+    <File Path="common\emailTemplates\assignRoleDeletedEmailTemplate.html" Url="common/emailTemplates/assignRoleDeletedEmailTemplate.html" ReplaceContent="TRUE" />
+    <File Path="android-chrome-96x96.png" Url="android-chrome-96x96.png" ReplaceContent="TRUE" />
+    <File Path="apple-touch-icon.png" Url="apple-touch-icon.png" ReplaceContent="TRUE" />
+    <File Path="browserconfig.xml" Url="browserconfig.xml" ReplaceContent="TRUE" />
+    <File Path="favicon.ico" Url="favicon.ico" ReplaceContent="TRUE" />
+    <File Path="favicon-16x16.png" Url="favicon-16x16.png" ReplaceContent="TRUE" />
+    <File Path="favicon-32x32.png" Url="favicon-32x32.png" ReplaceContent="TRUE" />
+    <File Path="mstile-150x150.png" Url="mstile-150x150.png" ReplaceContent="TRUE" />
+    <File Path="safari-pinned-tab.svg" Url="safari-pinned-tab.svg" ReplaceContent="TRUE" />
+  </Module>
+</Elements>

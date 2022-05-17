@@ -1,0 +1,41 @@
+﻿.dfa-loader {
+    z-index: 63;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.dfa-fakeLoader {
+  height: 100%;
+  z-index: 5;
+  border-radius: 100px;
+  align-content: center;
+  justify-content: center;
+  display: flex;
+
+  .fakeLoader-container {
+    position: fixed;
+    top: 40%;
+    /*max-width: 50%;
+    max-height: 150px;
+    margin: auto;
+    text-align: center;*/
+    background-color: #fff;
+    padding: 30px 100px;
+    border-radius: 10px;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  }
+
+  .fakeLoader-spinner md-progress-circular {
+    margin: auto;
+    width: 50px;
+    height: 50px;
+  }
+
+  .fakeLoader-text {
+    margin: 30px 0 0px 0;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+}

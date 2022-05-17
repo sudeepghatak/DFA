@@ -1,0 +1,52 @@
+﻿.role-list-header {
+    display: flex;
+    padding: 15px 0 0 15px;
+
+    h4 {
+        font-weight: bold;
+        font-size: 3rem;
+        margin: auto 0;
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+    .create-role {
+        margin: auto 0 auto auto;
+
+        .md-button{
+            display:flex;
+        }
+
+        i{
+            margin-right: 5px;
+        }
+    }
+}
+
+.role-list-container {
+    margin-top: 20px;
+
+    .label-header {
+        font-size: 1.4rem;
+        font-weight: bold;
+        max-width: 1400px;
+        margin: auto;
+    }
+
+    .md-button {
+        margin: 0;
+        padding: 0;
+    }
+
+    .dfa-people-list {
+        .roleName {
+            flex: 2;
+        }
+
+        div {
+            flex: 1;
+        }
+    }
+}

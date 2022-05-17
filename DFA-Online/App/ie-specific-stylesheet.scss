@@ -1,0 +1,24 @@
+﻿@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE10+ CSS styles go here */
+    /* http://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet */
+    .dfaNumberInput {
+        input {
+            min-width: 400px;
+        }
+    }
+
+    .tile-icon-container {
+        border-radius: 50%;
+        height: 35px !important;
+        width: 35px !important;
+    }
+
+    .notification-text {
+        height: 10px;
+    }
+
+    .notification-header .notification-close-icon{
+        height: 29px;
+    }
+
+}

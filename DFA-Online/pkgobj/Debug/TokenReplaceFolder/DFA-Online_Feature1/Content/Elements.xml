@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="Content">
+    <File Path="Content\App.css" Url="Content/App.css" ReplaceContent="TRUE" />
+    <File Path="Content\cssReset.scss" Url="Content/cssReset.scss" ReplaceContent="TRUE" />
+    <File Path="Content\angular-material\angular-material.css" Url="Content/angular-material/angular-material.css" ReplaceContent="TRUE" />
+    <File Path="Content\angular-material\angular-material.layout-attributes.css" Url="Content/angular-material/angular-material.layout-attributes.css" ReplaceContent="TRUE" />
+    <File Path="Content\angular-material\angular-material.layout-attributes.min.css" Url="Content/angular-material/angular-material.layout-attributes.min.css" ReplaceContent="TRUE" />
+    <File Path="Content\angular-material\angular-material.layouts.css" Url="Content/angular-material/angular-material.layouts.css" ReplaceContent="TRUE" />
+    <File Path="Content\angular-material\angular-material.layouts.ie_fixes.css" Url="Content/angular-material/angular-material.layouts.ie_fixes.css" ReplaceContent="TRUE" />
+    <File Path="Content\angular-material\angular-material.layouts.min.css" Url="Content/angular-material/angular-material.layouts.min.css" ReplaceContent="TRUE" />
+    <File Path="Content\angular-material\angular-material.min.css" Url="Content/angular-material/angular-material.min.css" ReplaceContent="TRUE" />
+  </Module>
+</Elements>

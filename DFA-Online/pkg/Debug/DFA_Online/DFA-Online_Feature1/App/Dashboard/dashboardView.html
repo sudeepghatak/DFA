@@ -1,0 +1,260 @@
+﻿<div ng-include="'../App/dfa-header.html'"></div>
+<section class="notification-header animated slideInDown" ng-if="vm.notifications.length > 0" ng-hide="closeNotificationPanel">
+    <div>
+        <div ng-if="!vm.userIsAdmin">
+            <a href="#notifications" target="_self">
+                <i class="material-icons notification-icon">notifications</i>
+                <span class="notification-text">
+                    You have<span class="notification-number">
+                        {{vm.notifications.length}}
+                    </span>role<span ng-if="vm.notifications.length > 1">s</span> awaiting approval.
+                </span>
+            </a>
+        </div>
+        <div ng-if="vm.userIsAdmin">
+            <a href="#notifications" target="_self">
+                <i class="material-icons notification-icon">notifications</i>
+                <span class="notification-text">
+                    There are<span class="notification-number">
+                        {{vm.notifications.length}}
+                    </span>role<span ng-if="vm.notifications.length > 1">s</span> awaiting approval. You are an admin so you see them all.
+                </span>
+            </a>
+        </div>
+        <div class="notification-close-icon" ng-click="closeNotificationPanel = true">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+</section>
+<section class="dfa-body">
+    <section class="dfa-basic-section">
+        <div class="page-header">My Tasks</div>
+        <section class="tile-container">
+            <a ui-sref="DfaHolderList" >
+                <div class="dfa-tile">
+                    <section>
+                        <div class="dfa-tile-container">
+                            <div class="dfa-tile-icon">
+                                <div class="tile-icon-container">
+                                    <i class="material-icons">search</i>
+                                </div>
+                            </div>
+                            <div class="dfa-tile-text">Find DFA Holder</div>
+                        </div>
+                    </section>
+                </div>
+            </a>
+            <a ng-if="vm.currentUserHasDFA && (vm.currentDfaHolder.ApprovalStage === vm.approvalStage.approved || vm.currentDfaHolder.ApprovalStage === '')" ui-sref="subDelegateEdit">
+                <div class="dfa-tile">
+                    <section>
+                        <div class="dfa-tile-container">
+                            <div class="dfa-tile-icon">
+                                <div class="tile-icon-container">
+                                    <i class="material-icons">flight_takeoff</i>
+                                </div>
+                            </div>
+                            <div class="dfa-tile-text">Sub-Delegate DFA</div>
+                        </div>
+                    </section>
+                </div>
+            </a>
+            <a ng-if="vm.currentUserHasDFA && (vm.currentDfaHolder.ApprovalStage === vm.approvalStage.approved || vm.currentDfaHolder.ApprovalStage === '')" ui-sref="mySubDelegateList">
+                <div class="dfa-tile">
+                    <section>
+                        <div class="dfa-tile-container">
+                            <div class="dfa-tile-icon">
+                                <div class="tile-icon-container">
+                                    <i class="material-icons">playlist_add_check</i>
+                                </div>
+                            </div>
+                            <div class="dfa-tile-text">My Sub-Delegations</div>
+                        </div>
+                    </section>
+                </div>
+            </a>
+        </section>
+        <div >
+            <md-button class="link-btn" href="https://genesisenergynz.sharepoint.com/fin/Pages/Financial%20Control/Delegated-Financial-Authority.aspx" target="_blank">View Our DFA Policy</md-button>
+        </div>
+    </section>
+    <div class="divider" ng-if="vm.userIsAdmin"></div>
+    <section class="dfa-admin-section" ng-if="vm.userIsAdmin">
+        <div class="page-header">Admin Tasks</div>
+        <section class="tile-container">
+            <a ui-sref="roleEdit({roleId: ''})">
+                <div class="dfa-tile">
+                    <section>
+                        <div class="dfa-tile-container">
+                            <div class="dfa-tile-icon">
+                                <div class="tile-icon-container">
+                                    <i class="material-icons">rate_review</i>
+                                </div>
+                            </div>
+                            <div class="dfa-tile-text">Create New Role</div>
+                        </div>
+                    </section>
+                </div>
+            </a>
+            <a ui-sref="DfaHolderEdit({roleId: ''})">
+                <div class="dfa-tile">
+                    <section>
+                        <div class="dfa-tile-container">
+                            <div class="dfa-tile-icon">
+                                <div class="tile-icon-container">
+                                    <i class="material-icons">group_add</i>
+                                </div>
+                            </div>
+                            <div class="dfa-tile-text">Assign/Edit Person's Role</div>
+                        </div>
+                    </section>
+                </div>
+            </a>
+            <a ui-sref="roleList">
+                <div class="dfa-tile">
+                    <section>
+                        <div class="dfa-tile-container">
+                            <div class="dfa-tile-icon">
+                                <div class="tile-icon-container">
+                                    <i class="material-icons">assignment</i>
+                                </div>
+                            </div>
+                            <div class="dfa-tile-text">View All Employee Roles</div>
+                        </div>
+                    </section>
+                </div>
+            </a>
+            <a ui-sref="subDelegateList">
+                <div class="dfa-tile">
+                    <section>
+                        <div class="dfa-tile-container">
+                            <div class="dfa-tile-icon">
+                                <div class="tile-icon-container">
+                                    <i class="material-icons">playlist_add_check</i>
+                                </div>
+                            </div>
+                            <div class="dfa-tile-text">View All Sub-Delegations</div>
+                        </div>
+                    </section>
+                </div>
+            </a>
+        </section>
+    </section>
+    <div class="divider" ng-if="vm.notifications.length > 0"></div>
+    <section class="dfa-notification-section" ng-if="vm.notifications.length > 0" id="notifications">
+        <div ng-if="!vm.userIsAdmin" class="page-header">My Approvals</div>
+        <div ng-if="vm.userIsAdmin" class="page-header">All Approvals</div>
+        <section class="notification-container">
+            <div class="notification-item" ng-repeat="items in vm.notifications" ng-hide="items.hide">
+                <!-- NG REPEAT HERE -->
+                <div class="notification-item-text flex-item-1">
+                    <div class="text-header">
+                        <span>{{items.Name.Title}}</span>
+                        <span>- {{items.RoleID.RoleName}}</span>
+                    </div>
+                    <div class="text-status flex">
+                        <span class="approval-text flex-item-2" ng-if="items.ApprovalStage !== vm.approvalStage.dfa">
+                          {{items.ApprovalStage}} Approval
+                        </span>
+                        <span class="approval-text flex-item-2" ng-if="items.ApprovalStage === vm.approvalStage.dfa">
+                          Awaiting DFA Holder Acceptance
+                        </span>
+                        <md-button class="md-primary flex-item-1" ng-click="viewPerson = !viewPerson">View DFA</md-button>
+                    </div>
+                    <div class="text-status">
+                        <div class="approval-text">
+                            Last Updated: {{items.Modified | date:'MMM dd yyyy HH:mm'}}
+                        </div>
+                    </div>
+                </div>
+                <div class="notification-item-buttons flex-item-2">
+                    <md-button class="md-raised md-primary" ng-click="vm.post(items.ApprovalStage, items, $index)">
+                      <span ng-if="items.ApprovalStage !== vm.approvalStage.dfa">Approve</span>
+                      <span ng-if="items.ApprovalStage === vm.approvalStage.dfa">Accept</span>
+                    </md-button>
+                    <md-button class="md-raised " ng-click="vm.post('Declined', items, $index)">Decline</md-button>
+                </div>
+
+                <div class="relative">
+                    <div class="window-overlay" ng-show="viewPerson" ng-click="viewPerson = !viewPerson"></div>
+                    <div class="window" ng-show="viewPerson">
+                        <div class="window-container">
+                          <!-- Window Header -->
+                          <div class="window-header flex">
+                            <div class="flex-75">
+                              {{items.Name.Title}}
+                              <br />
+                              <span class="window-header-label">
+                                Approval Status:
+                                <span ng-class="{errorText: items.ApprovalStage !== vm.approvalStage.approved}">
+                                  {{items.ApprovalStage}}<span ng-if="items.ApprovalStage === 'Decline'">d</span>
+                                </span>
+                              </span>
+                            </div>
+                            <div class="flex-25 window-header-label">
+                              Last Modified: {{items.Modified | date}}
+                            </div>
+                          </div>
+                            <div class="window-content">
+                                <div class="flex">
+                                    <div class="flex-item-1">
+                                        <div class="content-label">Role</div>
+                                        <div>{{items.RoleID.RoleName}}</div>
+                                    </div>
+                                    <div class="flex-item-1">
+                                        <div class="content-label">Role ID</div>
+                                        <div>{{items.RoleID.ID}}</div>
+                                    </div>
+                                    <div class="flex-item-1" ng-if="items.RoleID.CostCentre">
+                                      <div class="content-label">Cost Centre</div>
+                                      <div>{{items.RoleID.CostCentre}}</div>
+                                    </div>
+                                </div>
+                                <!-- Manager & EGM Section-->
+                                <div>
+                                    <div ng-if="vm.getPersonFromRoleID(items.RoleID.ManagerID)" class="flex content-manager">
+                                        <div>Reports to</div>
+                                        <div>{{vm.getPersonFromRoleID(items.RoleID.ManagerID)}}</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div ng-if="vm.getPersonFromRoleID(items.RoleID.EGMID)" class="flex content-manager">
+                                        <div>EGM</div>
+                                        <div>{{vm.getPersonFromRoleID(items.RoleID.EGMID)}}</div>
+                                    </div>
+                                </div>
+                                <br />
+                                <!-- Notes -->
+                                <div ng-if="items.Notes">
+                                  <div><h6>Notes and Limitations</h6></div>
+                                  <div class="window-content-notes">
+                                    {{items.Notes}}
+                                  </div>
+                                  <br />
+                                </div>
+                                <md-divider></md-divider>
+                                <h6>Allocated DFA</h6>
+                                <div class="allocated-dfa-container">
+                                    <div ng-repeat="dfaNumber in vm.dfaNumberList" class="dfa-values-container"
+                                         ng-if="items.RoleID[dfaNumber] > 0 && dfaNumber !== 'DFA_7'">
+                                        <label ng-if="dfaNumber !== 'DFA_8'">{{vm.getDfaString(dfaNumber)}}</label>
+                                        <label ng-if="dfaNumber === 'DFA_8'">
+                                            {{vm.getDfaString(dfaNumber) + ' ' + items.RoleID['DFA_7'] + ' years (per contract annualised)'}}
+                                        </label>
+                                        <div>{{items.RoleID[dfaNumber] | currency:undefined:0}}</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <md-divider></md-divider>
+                            <div class="window-footer">
+                                <md-button class="md-raised md-primary" ng-click="viewPerson = !viewPerson">Close</md-button>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

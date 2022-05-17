@@ -1,0 +1,330 @@
+﻿<div ng-include="'../App/dfa-header.html'"></div>
+<div ng-cloak class="dfa-people">
+    <div class="role-list-header">
+        <h4>{{::vm.Title}}</h4>
+      <a class="margin-left-auto sharePointLink" ng-if="vm.userIsAdmin" ng-href="{{vm.sharePointLink}}" target="_blank"><md-button class="md-raised md-primary">View In SharePoint</md-button></a>
+    </div>
+    <div class="dfa-searchbar">
+        <md-input-container class="md-block">
+            <md-icon><i class="material-icons">search</i></md-icon>
+            <input ng-model="peopleSearch" placeholder="Search for a person or role" />
+        </md-input-container>
+    </div>
+
+    <section class="filters-container">
+        <div class="flex">
+            <h6>Filters:</h6>
+            <!--<md-checkbox ng-model="vm.showWaitingApproval" class="md-primary filters-dfaHolder-checkbox" aria-label="Finished?"
+                         ng-if="vm.userIsAdmin">
+                Show People with DFA Pending Approval
+            </md-checkbox>-->
+        </div>
+        <br />
+        <div class="filtersRow">
+            <md-input-container class="filters-dfaHolder-egmFilter">
+                <label>Filter by EGM</label>
+                <md-select ng-model="vm.egmFilter" placeholder="Filter by EGM">
+                    <md-option ng-value="all">All</md-option>
+                    <md-option ng-value="person.RoleID.EGMID"
+                               ng-repeat="person in vm.allDfaHolders
+                           | filter: vm.egmEmptyOrNull
+                           | unique: 'RoleID.EGMID'">
+                        {{vm.getPersonFromRoleID(person.RoleID.EGMID)}}
+                        &nbsp; - &nbsp;
+                        {{vm.getRoleName(person.RoleID.EGMID)}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="filters-dfaHolder-costCentre" ng-if="vm.isThereCostCentre">
+                <label>Filter by Cost Centre</label>
+                <md-select ng-model="vm.costCentreFilter" placeholder="Filter by Cost Centre">
+                    <md-option ng-value="all">All</md-option>
+                    <md-option ng-value="person.RoleID.CostCentre"
+                               ng-repeat="person in vm.allDfaHolders
+                           | unique: 'RoleID.CostCentre'">
+                        {{person.RoleID.CostCentre}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        <br />
+        <div class="filtersRow">
+            <md-input-container>
+                <label>Filter by DFA</label>
+                <md-select ng-model="vm.dfaFilter" placeholder="DFA">
+                    <md-option ng-value="">All</md-option>
+                    <md-option ng-value="dfaNumber"
+                               ng-repeat="dfaNumber in vm.dfaNumbers">
+                        {{vm.getDfaString(dfaNumber)}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="flex dfaNumberInput">
+                <label>Filter by ($) DFA Amount</label>
+                <input ng-model="vm.dfaAmountFilter" type="number">
+            </md-input-container>
+        </div>
+    </section>
+
+    <section class="filters-container" style="margin-top:15px">
+        <div class="flex">
+            <h6>
+                Sub-Delegation Period:
+                <md-tooltip md-direction="right">Search all Sub-Delegations of Financial Authority that occur within the date range</md-tooltip>
+                <md-icon style="width: 24px; height: 24px">
+                    help_outline
+                </md-icon>
+            </h6>
+        </div>
+        <br />
+        <div class="filtersRow">
+            <div class="flex filters-dfaHolder-subDelSearchContainer">
+                <!--SubDelegation Date Range Pickers-->
+                <md-input-container>
+                    <label>Start Date</label>
+                    <md-datepicker ng-model="vm.subDelegateStartDate" name="dateField"></md-datepicker>
+                </md-input-container>
+                <md-input-container>
+                    <label>End Date</label>
+                    <md-datepicker ng-model="vm.subDelegateEndDate" 
+                                   name="dateField"
+                                   md-min-date="vm.subDelegateStartDate">
+                    </md-datepicker>
+                </md-input-container>
+                <md-button class="md-raised md-primary" ng-click="vm.querySubDelegations()">
+                    Sub Delegation Search
+                </md-button>
+            </div>
+        </div>
+    </section>
+
+    <section class="dfa-list-container">
+
+        <div class="filtered-result-container" ng-if="vm.egmFilter || vm.dfaFilter || vm.dfaAmountFilter || vm.showWaitingApproval || vm.subDelSearchButton">
+            <span>Showing results for:</span>
+            <span ng-if="!vm.showWaitingApproval">
+                Users who only have <span class="filtered-result-label">DFA Authority</span>
+            </span>
+            <span ng-if="vm.showWaitingApproval" class="filtered-result-label">
+                Everyone
+            </span>
+            <span ng-if="vm.subDelSearchButton">
+                who have <span class="filtered-result-label">sub-delegations</span> between <span class="filtered-result-label">{{vm.subDelegateStartDate | date}}</span>and <span class="filtered-result-label">{{vm.subDelegateEndDate | date}}</span>
+            </span>
+            <span ng-if="vm.egmFilter">
+                that reports under the <span class="filtered-result-label">{{vm.getRoleName(vm.egmFilter)}}</span>
+            </span>
+            <span ng-if="vm.dfaFilter">
+                and for <span class="filtered-result-label">{{vm.getDfaString(vm.dfaFilter)}}</span>
+            </span>
+            <span ng-if="vm.dfaAmountFilter">
+                which are greater than <span class="filtered-result-label">{{vm.dfaAmountFilter | currency:undefined:0}}</span>
+            </span>
+
+            <span ng-click="vm.clearFilter()" class="clearFilter-btn">
+                <i class="material-icons">close</i>
+                <span>Clear</span>
+            </span>
+
+        </div>
+        <section class="dfa-generic-list">
+            <section class="generic-list-header">
+                <div>#</div>
+                <div class="flex dfaHolderList-subDel-flexColumns">
+                    <section class="subDel-icon-col">&nbsp;</section>
+                    <section class="subDel-text-col">Name</section>
+                    <section class="subDel-icon-col">&nbsp;</section>
+                </div>
+                <div ng-class="{center: !vm.userIsAdmin}">Role</div>
+                <div>Status</div>
+                <div>&nbsp;</div>
+            </section>
+            <section class="generic-list-body">
+                <section class="generic-list-item" ng-repeat="person in vm.allDfaHolders
+                |filter: vm.approvalStageFilter
+                |filter: {RoleID: {CostCentre: vm.costCentreFilter}}
+                |filter: peopleSearch
+                |filter: {RoleID: {EGMID: vm.egmFilter}}
+                |filter: vm.filterbyDFA">
+                    <section class="repeated-item-container">
+                        <div>{{$index + 1}}<!--{{person.ID}}--></div>
+                        <div class="flex dfaHolderList-subDel-flexColumns">
+                            <!-- Show an icon if they have delegated, or recieved a sub-delegation | on hover or on click show more deets-->
+                            <!--Icon for Initiator -->
+                            <section class="subDel-icon-col subDel-icon-indicator ">
+                                <figure ng-if="vm.getInitiatorSubdelegations(person.ID).length > 0" class="flex-item-1">
+                                    <md-tooltip>
+                                        {{person.Name.Title}} has sub-delegated their DFA to
+                                        <span ng-repeat="item in vm.getInitiatorSubdelegations(person.ID) |unique: 'DFAAssignee.Id' ">
+                                            {{vm.getPersonFromDfaId(item.DFAAssignee.Id)}}<span ng-if="!$last">,</span><span ng-if="$last">.</span>
+                                        </span>
+                                    </md-tooltip>
+                                    <i class="material-icons subDel-icon-initiator plane">flight_takeoff</i>
+                                    <section>Delegated</section>
+                                </figure>
+                            </section>
+                            <!-- Person/Name Label-->
+                            <section class="subDel-text-col">{{person.Name.Title}}</section>
+                            <!--Icon for Assignee -->
+                            <section class="subDel-icon-col subDel-icon-indicator flex">
+                                <figure ng-if="vm.getAssigneeSubdelegations(person.ID).length > 0" class="flex-item-1">
+                                    <md-tooltip>
+                                        {{person.Name.Title}} has been temporarily assigned the DFA of
+                                        <span ng-repeat="item in vm.getAssigneeSubdelegations(person.ID) |unique: 'DFAAssignee.Id'">
+                                            {{vm.getPersonFromDfaId(item.DFAInitiator.Id)}}<span ng-if="!$last">,</span><span ng-if="$last">.</span>
+                                        </span>
+                                    </md-tooltip>
+                                    <i class="material-icons subDel-icon-assignee">new_releases</i>
+                                    <section>Temporarily<br /> Inherited DFA</section>
+                                </figure>
+                            </section>
+                        </div>
+                        <!-- Role Name -->
+                        <div ng-class="{center: !vm.userIsAdmin}">{{person.RoleID.RoleName}}</div>
+                        <!-- DFA Approval Status -->
+                        <div>
+                            <span ng-if="!person.ApprovalStage">Approved</span>
+                            <span ng-if="person.ApprovalStage" ng-class="{errorText: person.ApprovalStage !== vm.approvalStage.approved}">{{person.ApprovalStage}}</span>
+                        </div>
+                        <div> <md-button md-no-ink class="md-primary" ng-click="person.showPerson = !person.showPerson">View DFA</md-button></div>
+                    </section>
+                    <section class="relative">
+                        <div class="window-overlay" ng-show="person.showPerson" ng-click="person.showPerson = !person.showPerson"></div>
+                        <div class="window" ng-show="person.showPerson">
+                            <div class="window-container">
+                                <!-- Window Header -->
+                                <div class="window-header flex">
+                                    <div class="flex-75">
+                                        {{person.Name.Title}}
+                                        <br />
+                                        <span class="window-header-label">
+                                          Approval Status:
+                                          <span ng-class="{errorText: person.ApprovalStage !== vm.approvalStage.approved}">
+                                            {{person.ApprovalStage}}<span ng-if="person.ApprovalStage === 'Decline'">d</span>
+                                          </span>
+                                        </span>
+                                    </div>
+                                    <div class="flex-25 window-header-label">
+                                      Last Modified: {{person.Modified | date}}
+                                    </div>
+                                </div>
+                                <br />
+                                <!-- Window Content-->
+                                <div class="window-content">
+                                    <!-- Role Section & Cost Centre -->
+                                    <div class="flex">
+                                        <div class="flex-item-1">
+                                            <div class="content-label">Role</div>
+                                            <div>{{person.RoleID.RoleName}}</div>
+                                        </div>
+                                        <div class="flex-item-1">
+                                            <div class="content-label">Role ID</div>
+                                            <div>{{person.RoleID.ID}}</div>
+                                        </div>
+                                        <div class="flex-item-1" ng-if="person.RoleID.CostCentre">
+                                            <div class="content-label">Cost Centre</div>
+                                            <div>{{person.RoleID.CostCentre}}</div>
+                                        </div>
+                                    </div>
+                                    <!-- Manager & EGM Section-->
+                                    <div>
+                                        <div>
+                                            <div ng-if="vm.getPersonFromRoleID(person.RoleID.ManagerID)"
+                                                 class="flex content-manager">
+                                                <div>Reports to</div>
+                                                <div>{{vm.getPersonFromRoleID(person.RoleID.ManagerID)}}</div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div ng-if="vm.getPersonFromRoleID(person.RoleID.EGMID)" class="flex content-manager">
+                                                <div>EGM</div>
+                                                <div>{{vm.getPersonFromRoleID(person.RoleID.EGMID)}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Notes -->
+                                    <div ng-if="person.Notes">
+                                      <div><h6>Notes and Limitations</h6></div>
+                                      <div class="window-content-notes">
+                                        {{person.Notes}}
+                                      </div>
+                                      <br />
+                                    </div>
+                                    <!-- Sub-Delegation Section -->
+                                    <div class="window-subDel-section" ng-if="vm.getInitiatorSubdelegations(person.ID).length > 0 || vm.getAssigneeSubdelegations(person.ID).length > 0">
+                                        <!-- If they're giving their Delegation Away-->
+                                        <section ng-if="vm.getInitiatorSubdelegations(person.ID).length > 0">
+                                            <header class="subDel-section-header">
+                                                <span class="header-personTitle bold">{{person.Name.Title}}</span> has sub-delegated their DFA to:
+                                            </header>
+                                            <section class="subDel-section-repeatedPeople">
+                                                <ul>
+                                                    <li ng-repeat="item in vm.getInitiatorSubdelegations(person.ID)">
+                                                        <span class="" ng-click="vm.showSubDelPerson(person.ID, item.DFAAssignee.Id)">
+                                                            <a href="">{{vm.getPersonFromDfaId(item.DFAAssignee.Id)}}</a>
+                                                        </span>
+                                                        for
+                                                        <span class="bold">{{vm.getDurationFromDate(item.AwayStartDate, item.AwayEndDate)}}</span>
+                                                        <span class="subDel-dates-container">
+                                                            (<span class="subDel-section-dates ">{{item.AwayStartDate | date}}</span>
+                                                            to
+                                                            <span class="subDel-section-dates ">{{item.AwayEndDate | date}}</span>)
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                            </section>
+                                        </section>
+
+                                        <!-- If they're inheriting someone else's DFA-->
+                                        <section ng-if="vm.getAssigneeSubdelegations(person.ID).length > 0">
+                                            <header class="subDel-section-header">
+                                                <span class="header-personTitle bold">{{person.Name.Title}}</span> has inherited the DFA of:
+                                            </header>
+                                            <section class="subDel-section-repeatedPeople">
+                                                <ul>
+                                                    <li ng-repeat="item in vm.getAssigneeSubdelegations(person.ID)">
+                                                        <span class="" ng-click="vm.showSubDelPerson(person.ID, item.DFAInitiator.Id)">
+                                                            <a href="">{{vm.getPersonFromDfaId(item.DFAInitiator.Id)}}</a>
+                                                        </span>
+                                                        for
+                                                        <span class="bold">{{vm.getDurationFromDate(item.AwayStartDate, item.AwayEndDate)}}</span>
+                                                        <span class="subDel-dates-container">
+                                                            (<span class="subDel-section-dates ">{{item.AwayStartDate | date}}</span>
+                                                            to
+                                                            <span class="subDel-section-dates ">{{item.AwayEndDate | date}}</span>)
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                            </section>
+                                        </section>
+                                    </div>
+
+                                    <br />
+                                    <md-divider></md-divider>
+                                        <h6>Allocated DFA</h6>
+                                        <div class="allocated-dfa-container window-content-panel">
+                                            <div ng-repeat="dfaNumber in vm.dfaNumbers" class="dfa-values-container"
+                                                 ng-if="person.RoleID[dfaNumber] > 0 && dfaNumber !== 'DFA_7'">
+                                                <div ng-if="dfaNumber !== 'DFA_8'">{{vm.getDfaString(dfaNumber)}}</div>
+                                                <div ng-if="dfaNumber === 'DFA_8'">{{vm.getDfaString(dfaNumber) + ' ' + person.RoleID['DFA_7'] + ' years (per contract annualised)'}}</div>
+                                                <div>{{person.RoleID[dfaNumber] | currency:undefined:0}}</div>
+                                            </div>
+                                        </div>
+
+                                </div>
+                                <md-divider></md-divider>
+                                <div class="window-footer">
+                                    <md-button class="md-raised md-primary" ng-click="vm.showSubDelPerson(person.ID, null)">
+                                        Close
+                                    </md-button>
+                                </div>
+                            </div>
+                        </div>
+                    </section> <!-- End of Window Pop-up Content -->
+                </section>
+            </section>
+        </section>
+        <section class="generic-list-footer"></section>
+    </section>
+</div>
+

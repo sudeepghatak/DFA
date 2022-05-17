@@ -1,0 +1,74 @@
+﻿.dfaHolder-form-header {
+    h3 {
+        color: $mdBlue;
+        margin: auto 0;
+        padding-left: 10px;
+    }
+}
+
+
+.dfaHolder-assignEmployee-container {
+    padding: 0 0 20px 0;
+    h6{
+        margin-bottom: 10px;
+    }
+}
+
+.dfaHolder-employmentDate-container {
+    h6 {
+        margin: 0 2px;
+    }
+
+    .flex {
+        margin: 0 -15px;
+        padding-top: 10px;
+    }
+}
+
+.dfaHolder-contractor-container {
+    margin: 0 2px;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+
+.dfaHolder-assignRole-container {
+    md-input-container {
+        flex: 2;
+    }
+
+    .assignRole-arrow {
+        padding: 20px;
+        flex: 1;
+        text-align: center;
+    }
+}
+
+.dfaholderCheckbox {
+    display: flex;
+
+    .md-label {
+        display: flex;
+
+        span {
+            margin: auto;
+        }
+    }
+}
+
+.dfaHolder-notes-container {
+    .md-input {
+        margin-top: 7px;
+        border-width: 1px;
+        padding: 5px;
+        border-top: 1px solid rgba(0,0,0,0.12) !important;
+        border-right: 1px solid rgba(0,0,0,0.12) !important;
+        border-left: 1px solid rgba(0,0,0,0.12) !important;
+    }
+
+    .md-input-container:not(.md-input-invalid).md-input-focused {
+        border-width: 1px;
+    }
+}
+
+.dfaHolder-dfa-values{
+    padding: 20px 0;
+}

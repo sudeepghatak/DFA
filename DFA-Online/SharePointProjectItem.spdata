@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" DefaultFile="Elements.xml" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Type="ElementManifest" />
+    <ProjectItemFile Source="App\app.js" Target="App\" Type="ElementFile" />
+    <ProjectItemFile Source="App\Dashboard\dashboardController.js" Target="App\Dashboard\" Type="ElementFile" />
+    <ProjectItemFile Source="App\appLauncher.js" Target="App\" Type="ElementFile" />
+    <ProjectItemFile Source="common\services\spUrlInfoService.js" Target="common\services\" Type="ElementFile" />
+    <ProjectItemFile Source="common\services\common.services.js" Target="common\services\" Type="ElementFile" />
+    <ProjectItemFile Source="App\Dashboard\dashboardView.html" Target="App\Dashboard\" Type="ElementFile" />
+    <ProjectItemFile Source="App\Roles\roleListView.html" Target="App\Roles\" Type="ElementFile" />
+    <ProjectItemFile Source="App\Roles\RoleListController.js" Target="App\Roles\" Type="ElementFile" />
+    <ProjectItemFile Source="App\Roles\roleEditView.html" Target="App\Roles\" Type="ElementFile" />
+    <ProjectItemFile Source="App\Roles\RoleEditController.js" Target="App\Roles\" Type="ElementFile" />
+    <ProjectItemFile Source="common\services\roleResource.js" Target="common\services\" Type="ElementFile" />
+    <ProjectItemFile Source="common\services\dfaDataService.js" Target="common\services\" Type="ElementFile" />
+    <ProjectItemFile Source="common\services\environmentVariables.js" Target="common\services\" Type="ElementFile" />
+    <ProjectItemFile Source="App\dfa-style.scss" Target="App\" Type="ElementFile" />
+    <ProjectItemFile Source="App\dfa-style.css" Target="App\" Type="ElementFile" />
+    <ProjectItemFile Source="App\dfa-style.min.css" Target="App\" Type="ElementFile" />
+    <ProjectItemFile Source="App\Dashboard\dashboard.scss" Target="App\Dashboard\" Type="ElementFile" />
+    <ProjectItemFile Source="App\Dashboard\dashboard.css" Target="App\Dashboard\" Type="ElementFile" />
+    <ProjectItemFile Source="App\Dashboard\dashboard.min.css" Target="App\Dashboard\" Type="ElementFile" />
+    <ProjectItemFile Source="App\Person\DfaHolderListController.js" Target="App\Person\" Type="ElementFile" />
+    <ProjectItemFile Source="App\Person\DfaHolderListView.html" Target="App\Person\" Type="ElementFile" />
+    <ProjectItemFile Source="common\services\peopleResource.js" Target="common\services\" Type="ElementFile" />
+    <ProjectItemFile Source="common\services\emailService.js" Target="common\services\" Type="ElementFile" />
+    <ProjectItemFile Source="App\dfa-header.html" Target="App\" Type="ElementFile" />
+    <ProjectItemFile Source="App\dfa-header.scss" Target="App\" Type="ElementFile" />
+    <ProjectItemFile Source="App\Person\dfaHolderListView.scss" Target="App\Person\" Type="ElementFile" />
+    <ProjectItemFile Source="App\Roles\Role.scss" Target="App\Roles\" Type="ElementFile" />
+    <ProjectItemFile Source="App\Roles\roleList.scss" Target="App\Roles\" Type="ElementFile" />
+    <ProjectItemFile Source="App\dfaFakeLoader.html" Target="App\" Type="ElementFile" />
+    <ProjectItemFile Source="App\dfaFakeLoader.scss" Target="App\" Type="ElementFile" />
+    <ProjectItemFile Source="common\directives\format.js" Target="common\directives\" Type="ElementFile" />
+    <ProjectItemFile Source="common\directives\formFocusInvalidInput.js" Target="common\directives\" Type="ElementFile" />
+    <ProjectItemFile Source="App\Person\DfaHolderEditController.js" Target="App\Person\" Type="ElementFile" />
+    <ProjectItemFile Source="App\Person\DfaHolderEditView.html" Target="App\Person\" Type="ElementFile" />
+    <ProjectItemFile Source="common\services\userService.js" Target="common\services\" Type="ElementFile" />
+    <ProjectItemFile Source="App\Person\dfaHolderEditView.scss" Target="App\Person\" Type="ElementFile" />
+    <ProjectItemFile Source="App\SubDelegate\subDelegateListView.html" Target="App\SubDelegate\" Type="ElementFile" />
+    <ProjectItemFile Source="App\SubDelegate\SubDelegateListController.js" Target="App\SubDelegate\" Type="ElementFile" />
+    <ProjectItemFile Source="App\SubDelegate\subDelegate.scss" Target="App\SubDelegate\" Type="ElementFile" />
+    <ProjectItemFile Source="common\services\subDelegateResource.js" Target="common\services\" Type="ElementFile" />
+    <ProjectItemFile Source="App\SubDelegate\SubDelegateEditController.js" Target="App\SubDelegate\" Type="ElementFile" />
+    <ProjectItemFile Source="App\SubDelegate\subDelegateEditForm.html" Target="App\SubDelegate\" Type="ElementFile" />
+    <ProjectItemFile Source="App\ie-specific-stylesheet.scss" Target="App\" Type="ElementFile" />
+    <ProjectItemFile Source="common\emailTemplates\testEmailTemplate.html" Target="common\emailTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="common\emailTemplates\roleCreatedEmailTemplate.html" Target="common\emailTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="common\emailTemplates\assignRoleDfaHolderEmailTemplate.html" Target="common\emailTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="common\emailTemplates\subDelegateEmailTemplate.html" Target="common\emailTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="common\emailTemplates\sampleSignatureEmailTemplate.html" Target="common\emailTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="common\emailTemplates\assignRoleCeoEgmEmailTemplate.html" Target="common\emailTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="common\emailTemplates\assignRoleDeclinedEmailTemplate.html" Target="common\emailTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="common\emailTemplates\assignRoleCompleteEmailTemplate.html" Target="common\emailTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="common\emailTemplates\roleDeletedEmail.html" Target="common\emailTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="common\emailTemplates\assignRoleDeletedEmailTemplate.html" Target="common\emailTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="android-chrome-96x96.png" Type="ElementFile" />
+    <ProjectItemFile Source="apple-touch-icon.png" Type="ElementFile" />
+    <ProjectItemFile Source="browserconfig.xml" Type="ElementFile" />
+    <ProjectItemFile Source="favicon.ico" Type="ElementFile" />
+    <ProjectItemFile Source="favicon-16x16.png" Type="ElementFile" />
+    <ProjectItemFile Source="favicon-32x32.png" Type="ElementFile" />
+    <ProjectItemFile Source="mstile-150x150.png" Type="ElementFile" />
+    <ProjectItemFile Source="safari-pinned-tab.svg" Type="ElementFile" />
+  </Files>
+</ProjectItem>

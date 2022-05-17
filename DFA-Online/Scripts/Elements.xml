@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="Scripts">
+    <File Path="Scripts\App.js" Url="Scripts/App.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\jquery-1.9.1.min.map" Url="Scripts/jquery-1.9.1.min.map" ReplaceContent="TRUE" />
+    <File Path="Scripts\jquery-1.9.1.min.js" Url="Scripts/jquery-1.9.1.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\jquery-1.9.1.js" Url="Scripts/jquery-1.9.1.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\jquery-1.9.1.intellisense.js" Url="Scripts/jquery-1.9.1.intellisense.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular\angular.js" Url="Scripts/angular/angular.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular\angular.min.js" Url="Scripts/angular/angular.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-animate\angular-animate.js" Url="Scripts/angular-animate/angular-animate.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-animate\angular-animate.min.js" Url="Scripts/angular-animate/angular-animate.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-animate\angular-animate.min.js.map" Url="Scripts/angular-animate/angular-animate.min.js.map" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-aria\angular-aria.js" Url="Scripts/angular-aria/angular-aria.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-aria\angular-aria.min.js" Url="Scripts/angular-aria/angular-aria.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-aria\angular-aria.min.js.map" Url="Scripts/angular-aria/angular-aria.min.js.map" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-cookies\angular-cookies.js" Url="Scripts/angular-cookies/angular-cookies.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-cookies\angular-cookies.min.js" Url="Scripts/angular-cookies/angular-cookies.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-cookies\angular-cookies.min.js.map" Url="Scripts/angular-cookies/angular-cookies.min.js.map" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-material\angular-material-mocks.js" Url="Scripts/angular-material/angular-material-mocks.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-material\angular-material.js" Url="Scripts/angular-material/angular-material.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-material\angular-material.min.js" Url="Scripts/angular-material/angular-material.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-messages\angular-messages.js" Url="Scripts/angular-messages/angular-messages.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-messages\angular-messages.min.js" Url="Scripts/angular-messages/angular-messages.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-messages\angular-messages.min.js.map" Url="Scripts/angular-messages/angular-messages.min.js.map" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-resource\angular-resource.js" Url="Scripts/angular-resource/angular-resource.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-resource\angular-resource.min.js" Url="Scripts/angular-resource/angular-resource.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-resource\angular-resource.min.js.map" Url="Scripts/angular-resource/angular-resource.min.js.map" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-ui-router\angular-ui-router.js" Url="Scripts/angular-ui-router/angular-ui-router.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\angular-ui-router\angular-ui-router.min.js" Url="Scripts/angular-ui-router/angular-ui-router.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\jquery-extensions.js" Url="Scripts/jquery-extensions.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-precise-range.min.js" Url="Scripts/moment-precise-range.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-with-locales.js" Url="Scripts/moment-with-locales.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-with-locales.min.js" Url="Scripts/moment-with-locales.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment.js" Url="Scripts/moment.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment.min.js" Url="Scripts/moment.min.js" ReplaceContent="TRUE" />
+  </Module>
+</Elements>

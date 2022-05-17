@@ -1,0 +1,68 @@
+﻿.form-container {
+    max-width: $maxBodyWidth;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.role-form {
+    background: #fff;
+    padding: 25px;
+    margin: 50px 0;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+    h3{
+        display:flex;
+        font-size: 3rem;
+        font-weight:bold;
+        i{
+            font-size: 3rem;
+            margin-right: 5px;
+        }
+    }
+
+    h4{
+        font-size: 2.4rem;
+        font-weight: bold;
+        margin-top: 20px;
+        display: flex;
+        i{
+            font-size: 2.4rem;
+            margin-right: 5px;
+        }
+    }
+
+    .role {
+        margin-top: 24px !important;
+    }
+
+    .secondDivider {
+        margin-top: 2px;
+        background-color: #DCDCDC;
+        border-color: #DCDCDC;
+        color: #DCDCDC;
+    }
+
+    .firstDivider, .thirdDivider {
+        margin-top: 20px;
+    }
+
+    .buttonPanel{
+        display:flex;
+
+        div{
+            margin: auto;
+        }
+    }
+}
+.errorText {
+    color: rgb(221, 44, 0);
+}
+
+.roleForm-dfaMaxValue-counter {
+    font-size: 1.2rem;
+    right: 0px;
+    top: -5px;
+    position: absolute;
+}
+

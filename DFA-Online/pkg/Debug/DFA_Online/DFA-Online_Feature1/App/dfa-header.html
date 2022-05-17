@@ -1,0 +1,103 @@
+﻿<header class="dfa-header">
+    <section>
+        <section>
+            <div class="header-menu-button" ng-hide="vm.dashboard" ui-sref="home">
+                <i class="material-icons">home</i>
+                <span>Home</span>
+            </div>
+            <div ng-click="vm.openLeftMenu()" class="header-menu-button" ng-if="vm.currentUserHasDFA" ng-hide="!vm.dashboard">
+                <i class="material-icons">menu</i>
+                <span>My DFA</span>
+            </div>
+            <div>
+                <div class="brand">DFA Online</div>
+                <div class="brand-subheader">Delegations of Authority</div>
+                
+            </div>
+        </section>
+    </section>
+</header>
+<md-sidenav md-component-id="left" class="md-sidenav-left dfa-sidebar"  ng-hide="!vm.dashboard">
+    <section ng-if="!vm.currentUserHasDFA">
+        <div class="mydfa-header">
+            Sorry you are not currently set up as a DFA Holder, please contact Finance for help
+        </div>
+    </section>
+    <section ng-if="vm.currentUserHasDFA">
+        <div class="mydfa-header">
+            {{vm.currentDfaHolder.Name.Title}}
+        </div>
+        <div class="mydfa-header">
+            {{vm.currentDfaHolder.RoleID.RoleName}}
+        </div>
+        <div class="center bold" ng-if="vm.currentDfaHolder.ApprovalStage">
+            <br />
+            <h5>
+            <span ng-if="vm.currentDfaHolder.ApprovalStage === vm.approvalStage.dfa">
+              Status: Awaiting DFA Holder Acceptance
+            </span>
+            <span ng-if="vm.currentDfaHolder.ApprovalStage !== vm.approvalStage.dfa">
+              Status: {{vm.currentDfaHolder.ApprovalStage}}
+              <span ng-if="vm.currentDfaHolder.ApprovalStage === vm.approvalStage.egm
+                          || vm.currentDfaHolder.ApprovalStage === vm.approvalStage.ceo">
+              Approval
+              </span>
+            </span>
+            </h5>
+        </div>
+        <div class="center" ng-if="vm.currentDfaHolder.ApprovalStage === vm.approvalStage.dfa
+                            || vm.currentDfaHolder.ApprovalStage === vm.approvalStage.egm
+                            || vm.currentDfaHolder.ApprovalStage === vm.approvalStage.ceo">
+            <span ng-if="vm.currentDfaHolder.ApprovalStage === vm.approvalStage.dfa" style="font-size: 1.4rem">
+              <br />
+              Your Delegated Authority is still pending your approval. 
+              <br /> 
+              Feel free to Accept or Decline this on the Home Page. 
+              <br />
+            </span>
+            <br />
+        </div>
+        <div class="mydfa-content">
+            <div class="mydfa-header-header" ng-if="vm.currentDfaHolder.ApprovalStage === vm.approvalStage.declined">
+                DFA Request has been Declined. 
+                <br /> 
+                Contact Systems Accounting for further details. 
+            </div>
+            <div class="mydfa-header-header" ng-if="vm.currentDfaHolder.ApprovalStage !== vm.approvalStage.declined">
+              My DFA 
+              <span ng-if="vm.currentDfaHolder.ApprovalStage === vm.approvalStage.dfa
+                            || vm.currentDfaHolder.ApprovalStage === vm.approvalStage.egm
+                            || vm.currentDfaHolder.ApprovalStage === vm.approvalStage.ceo">
+              (Pending)
+              </span>
+            </div>
+            <div class="content-section" ng-repeat="dfaNumber in vm.dfaNumberList"
+                 ng-if="vm.currentDfaHolder.RoleID[dfaNumber] > 0 && vm.currentDfaHolder.ApprovalStage !== vm.approvalStage.declined && dfaNumber !== 'DFA_7'">
+                <div class="dfa-container">
+                    <div>
+                        <div ng-if="dfaNumber !== 'DFA_8'">{{vm.getDfaString(dfaNumber)}}</div>
+                        <div ng-if="dfaNumber === 'DFA_8'">{{vm.getDfaString(dfaNumber) + ' ' + vm.currentDfaHolder.RoleID['DFA_7'] + ' years (per contract annualised)'}}</div>
+                    </div>
+                    <div>
+                        {{vm.currentDfaHolder.RoleID[dfaNumber] | currency:undefined:0 }}
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <div class="dfa-legalText" style="font-size:12px;text-align:justify;padding-top:20px;">
+            <p>
+                DFA Holders are ONLY authorised to approve project and other work when it is part of an approved Budget. They are not authorised to approve any expenditure for which they are a potential beneficiary, e.g. cellphone accounts, travel costs etc.
+            </p>
+            <p>
+                All delegations must be read subject to the exceptions stated in the latest published Delegations Policy and Matrix (located on Genesis Energy's intranet site). Notes are also published for guidance.
+
+            </p>
+            <p>
+                If you have any questions about the application of any delegation please contact the relevant Financial Commercial Manager.
+            </p>
+            <p>
+                Please note that delegations only apply from the date they are approved/accepted by both parties.
+            </p>
+        </div>
+    </section>
+</md-sidenav>

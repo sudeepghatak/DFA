@@ -1,0 +1,95 @@
+﻿<div ng-include="'../App/dfa-header.html'"></div>
+<div class="role-list-header">
+    <h4>{{::vm.Title}}</h4>
+    <a class="margin-left-auto sharePointLink" ng-if="vm.userIsAdmin" ng-href="{{vm.sharePointLink}}" target="_blank"><md-button class="md-raised md-primary">View In SharePoint</md-button></a>
+</div>
+<section class="filters-container" style="margin-top:15px">
+  <div class="flex">
+    <h6>
+      Sub-Delegation Period:
+      <md-tooltip md-direction="right">Search all Sub-Delegations of Financial Authority that occur within the date range</md-tooltip>
+      <md-icon style="width: 24px; height: 24px">
+        help_outline
+      </md-icon>
+    </h6>
+  </div>
+  <br />
+  <div class="filtersRow">
+    <div>
+      <h6>Start Range</h6>
+      <br />
+      <br />
+      <div class="flex filters-dfaHolder-subDelSearchContainer">
+        <!--SubDelegation Date Range Pickers-->
+        <md-input-container>
+          <label>Start Date</label>
+          <md-datepicker ng-model="vm.subDelegateStartStartDate" name="dateField"></md-datepicker>
+        </md-input-container>
+        <md-input-container>
+          <label>End Date</label>
+          <md-datepicker ng-model="vm.subDelegateStartEndDate"
+                         name="dateField"
+                         md-min-date="vm.subDelegateStartStartDate">
+          </md-datepicker>
+        </md-input-container>
+      </div>
+    </div>
+    <div>
+      <h6>End Range</h6>
+      <br />
+      <br />
+      <div class="flex filters-dfaHolder-subDelSearchContainer">
+        <!--SubDelegation Date Range Pickers-->
+        <md-input-container>
+          <label>Start Date</label>
+          <md-datepicker ng-model="vm.subDelegateEndStartDate" name="dateField"></md-datepicker>
+        </md-input-container>
+        <md-input-container>
+          <label>End Date</label>
+          <md-datepicker ng-model="vm.subDelegateEndEndDate"
+                         name="dateField"
+                         md-min-date="vm.subDelegateEndStartDate">
+          </md-datepicker>
+        </md-input-container>
+      </div>
+    </div>
+    <md-button class="md-raised md-primary" style="max-height: 50px; margin: auto auto 0 auto;" 
+               ng-click="vm.clearFilters()">
+               Clear Filters
+    </md-button>
+  </div>
+</section>
+<section class="dfa-list-container">
+    
+    <section class="dfa-generic-list">
+        <section class="generic-list-header">
+            <div>#</div>
+            <div class="flex">
+                <section class="flex-item-1">
+                    ID
+                </section>
+                <section class="flex-item-1">
+                    Delegator
+                </section>
+            </div>
+            <div>Delegated To</div>
+            <div>Starts</div>
+            <div>Ends</div>
+            <div style="flex:1;margin:inherit;"></div>
+        </section>
+        <section class="generic-list-body">
+            <section class="repeated-item-container" ng-repeat="subDel in vm.subDelegate | filter: vm.filterStartDates| filter: vm.filterEndDates">
+                <div>{{$index + 1}}<!--{{subDel.Id}}--></div>
+                <div class="flex">
+                    <section class="flex-item-1">{{subDel.Id}}</section>
+                    <section class="flex-item-1">{{vm.getPersonFromDFAID(subDel.DFAInitiator.Id)}}</section>
+                </div>
+                <div>{{vm.getPersonFromDFAID(subDel.DFAAssignee.Id)}}</div>
+                <div>{{subDel.AwayStartDate | date}}</div>
+                <div>{{subDel.AwayEndDate | date}}</div>
+                <div style="flex:1;"><a ui-sref="subDelegateEdit({subDelegationId: subDel.Id})"><md-button md-no-ink class="md-primary">Edit</md-button></a></div>
+            </section>
+        </section>
+        <section class="generic-list-footer"></section>
+    </section>
+</section>

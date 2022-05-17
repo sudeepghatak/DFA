@@ -1,0 +1,421 @@
+﻿//CSS Reset making sure all elements are consistent across all Browsers
+@import '../Content/cssReset.scss';
+
+$primaryFont: Roboto;
+$maxBodyWidth: 1000px;
+
+//Colors for the Project
+$primaryColor: #CD5E08; //#dd8546; // #3F51B5;
+$mdBlue: #3f51b5;
+$secondaryColor: hsl(218, 66%, 44%); //#02a8f3;
+$defaultColor: #4B4F56;
+$backgroundGrey: #f1f1f1; //fcfcfc;
+$bodyBackgroundGrey: #ececec;
+
+html {
+  font-size: 62.5%;
+  font-family: $primaryFont;
+  background-color: $bodyBackgroundGrey;
+  height: 100%;
+}
+
+body {
+  font-size: 1.6rem;
+  color: $defaultColor;
+  background-color: $bodyBackgroundGrey;
+  height: 100%;
+}
+
+h1 h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 1.8rem;
+}
+
+h6 {
+  font-size: 1.6rem;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.center {
+  text-align: center !important;
+}
+
+.relative {
+  position: relative;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-item-1 {
+  flex: 1;
+}
+
+.flex-item-2 {
+  flex: 2;
+}
+
+.sharePointLink{
+  /*margin-left: auto;*/
+  padding-right: 20px;
+}
+
+.margin-left-auto{
+  margin-left: auto;
+}
+
+
+//Importing the rest of the components across the App.
+@import '../App/Dashboard/dashboard.scss';
+@import '../App/dfaFakeLoader.scss';
+@import '../App/dfa-header.scss';
+@import '../App/Person/dfaHolderListView.scss';
+@import '../App/Person/dfaHolderEditView.scss';
+@import '../App/Roles/role.scss';
+@import '../App/Roles/roleList.scss';
+@import '../App/SubDelegate/subDelegate.scss';
+@import '../App/ie-specific-stylesheet.scss';
+
+
+.divider {
+  border-top: 1px solid rgba(0,0,0,.08);
+  margin-top: 46px;
+  padding-bottom: 47px;
+}
+
+.md-button {
+  padding: 3px 10px;
+  border-radius: 5px;
+  text-transform: none;
+  font-weight: bold;
+}
+
+
+
+.link-btn {
+  color: #265cba !important;
+  border: 1px solid !important;
+  background: #fff;
+}
+
+.dfa-searchbar {
+  max-width: 450px;
+  margin: -65px auto auto;
+  padding: 20px 40px 15px 30px;
+
+  md-input-container {
+    margin: 0;
+    padding-bottom: 0;
+  }
+
+  input {
+    background-color: #fff;
+    margin-top: 2px;
+    border: 1px solid #ccc;
+    border-top: 1px solid #ccc !important;
+    border-left: 1px solid #ccc !important;
+    border-right: 1px solid #ccc !important;
+    padding: 2px;
+    padding-left: 5px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    border-radius: 5px;
+  }
+
+  i {
+    color: $defaultColor;
+  }
+}
+
+/*********************
+Common Form CSS
+    Below is the CSS which can be used as a template
+    for creating any of the forms.
+
+**********************/
+.filters-container {
+  padding: 15px 30px;
+  margin: 15px 30px;
+  margin-top: -15px;
+  margin-bottom: 0;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+  h6 {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+}
+
+.filtered-result-container {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+
+  .filtered-result-label {
+    font-weight: bold;
+  }
+
+  .clearFilter-btn {
+    padding: 3px 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    cursor: pointer;
+    max-width: 80px;
+
+    i {
+      font-size: 1.4rem;
+    }
+
+    i, span {
+      margin: auto 0;
+    }
+  }
+}
+
+.dfa-list-container {
+  margin: 15px 30px;
+}
+
+.dfa-form-container {
+  max-width: $maxBodyWidth;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.dfa-form {
+  background: #fff;
+  padding: 25px;
+  margin: 50px 0;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: bold;
+  }
+
+  h3 {
+    font-size: 3rem;
+  }
+
+  .dfa-form-header {
+    padding: 10px 0 20px 0;
+
+    h1, h2, h3, h4, h5, h6, i {
+      margin: auto 0;
+    }
+
+    button {
+      margin-left: auto;
+      margin-top: auto;
+      margin-bottom: auto;
+      background-color: #dd2c00;
+      color: #fff;
+
+      i {
+        color: #fff;
+      }
+
+      &:hover {
+        background-color: hsla(12, 100%, 34%, 1) !important;
+        color: #fff;
+      }
+    }
+  }
+
+  .dfa-form-body {
+    padding: 0 15px;
+  }
+
+  .dfa-form-footer {
+    padding: 20px 0 10px 0;
+    display: flex;
+
+    .button-row {
+      margin: auto;
+    }
+  }
+}
+
+
+/**Generic Style for DFA Values in a List Form*/
+.dfa-values-container {
+  padding: 5px 15px;
+  font-weight: normal;
+  font-size: 1.4rem;
+  border-bottom: 1px solid #d0d2d3;
+
+  div:first-child {
+    padding: 3px 0;
+  }
+
+  div:last-child {
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 4px 3px;
+  }
+}
+
+.dfa-values-container:first-child {
+  margin-top: 7px;
+}
+
+.dfa-values-container:last-child {
+  border: 0;
+}
+
+.dfa-values-container:hover {
+  background-color: #fafafa;
+}
+
+.filtersRow {
+  display: flex;
+
+  md-input-container,
+  md-checkbox {
+    margin: auto 0;
+  }
+}
+
+/***********Outage Panel*************/
+.window-overlay {
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  background-color: rgba(0, 0, 0, .6);
+  height: 100%;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  left: 0;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 62;
+}
+
+
+.window {
+  background-color: #EDEFF0;
+  border-radius: 5px;
+  /* display: none; */
+  margin: 3pc 0 5pc;
+  max-width: 70%;
+  width: 1000px;
+  z-index: 63;
+  top: 0;
+  left: 25%;
+  position: fixed;
+  overflow-y: scroll;
+  max-height: 800px;
+}
+
+.window-header-label {
+  font-size: 1.4rem;
+  text-align: right;
+  font-style: italic;
+  font-weight: normal;
+  line-height: 1.8rem;
+}
+
+.window-content-panel {
+  background-color: #fff;
+  border-radius: 3px;
+  padding: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.23);
+  font-size: 1.4rem;
+}
+
+.window-content-notes {
+  @extend .window-content-panel;
+  padding: 10px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+
+
+
+/**********************************/
+$borderColor: #ccc;
+
+.dfa-generic-list {
+  padding: 50px 25px;
+  /*max-width: 1200px;
+    margin: auto;*/
+  // border: 1px solid #ccc;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  //Setting the columns for the list
+  //This sets them all to an equal width.
+  .generic-list-header, .repeated-item-container {
+    display: flex;
+
+    div {
+      flex: 2;
+      padding: 5px 5px;
+      margin: auto;
+    }
+
+    div:first-child {
+      flex: 1;
+    }
+
+    div:nth-child(2) {
+      flex: 3;
+    }
+
+    div:nth-child(4),
+    div:nth-child(5) {
+      flex: 1;
+      text-align: center;
+    }
+  }
+
+  .generic-list-header div {
+    font-weight: bold;
+    font-size: 1.4rem;
+    /*border-top: 1px solid $borderColor;*/
+    border-bottom: 1px solid $borderColor;
+    text-align: left;
+
+    &:first-child {
+      text-align: left;
+    }
+  }
+
+
+
+  .repeated-item-container {
+    border-bottom: 1px solid $borderColor;
+
+    &:hover {
+      background-color: #fafafa;
+    }
+
+    div {
+
+      &:first-child {
+        color: $borderColor;
+      }
+    }
+  }
+}

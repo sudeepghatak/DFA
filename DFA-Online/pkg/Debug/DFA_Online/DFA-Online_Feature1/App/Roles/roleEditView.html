@@ -1,0 +1,98 @@
+﻿<div ng-include="'../App/dfa-header.html'"></div>
+<form form-focus-invalid-input name="vm.roleEditForm" novalidate>
+    <div class="dfa-form-container">
+        <section class="dfa-form">
+            <div class="dfa-form-header flex">
+                <i class="material-icons">assignment</i> &nbsp;
+                <h3>{{vm.Title}}</h3>
+                <md-button type="button" class="md-raised" ng-click="vm.deleteItem($event)"
+                           ng-if="vm.role.Id">
+                    <md-icon><i class="material-icons">delete</i></md-icon>
+                    Delete Role
+                </md-button>
+            </div>
+            <div class="dfa-form-body">
+                <h4 ng-if="vm.role.Id">ID: {{vm.role.Id}}</h4>
+
+                <!--Role Name-->
+                <md-input-container class="md-block role">
+                    <label>Role Name</label>
+                    <input required type="text" ng-model="vm.role.RoleName">
+                </md-input-container>
+
+                <!-- Manager & EGM Row -->
+                <div layout-gt-sm="row">
+                    <!--Manager Picker-->
+                    <md-input-container class="md-block managerField" flex-gt-sm>
+                        <label>Manager</label>
+                        <md-select ng-model="vm.role.ManagerID" required ng-model-options="{trackBy: '$value.Id'}"
+                                   ng-change="vm.managerChange(vm.role.ManagerID)">
+                            <md-option value=""><em>Choose the Manager</em></md-option>
+                            <md-option ng-value="role" ng-repeat="role in vm.roles | orderBy:'RoleName'"><em>{{role.RoleName}}</em></md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <!-- Department/EGM -->
+                    <md-input-container flex-gt-sm>
+                        <label>EGM</label>
+                        <md-select ng-model="vm.role.EGMID" ng-model-options="{trackBy: '$value.Id'}"
+                                   ng-disabled="vm.role.ManagerID.EGMID">
+                            <md-option value=""><em>Choose the EGM</em></md-option>
+                            <md-option ng-value="role" ng-repeat="role in vm.roles| orderBy: 'RoleName'"><em>{{role.RoleName}}</em></md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+
+                <div>
+                    <md-input-container class="md-block">
+                        <label>Cost Centre (Optional)</label>
+                        <input ng-model="vm.role.CostCentre" md-maxlength="255"/>
+                                
+                    </md-input-container>
+                </div>
+
+                <md-divider class='firstDivider'></md-divider>
+                <style>
+
+                </style>
+                <!-- DFA Section -->
+                <div ng-if="vm.role.ManagerID">
+                    <h4><i class="material-icons">work</i> DFA Allocations ($)</h4>
+                    <div class="role-dfa-section" id='DFA-Section' ng-repeat="dfaNumber in vm.dfaNumberList" ng-if="vm.role.ManagerID ">
+                        <div>
+                            <md-input-container class="role-repeatedDfa md-block" flex-gt-sm>
+                                <label ng-if="dfaNumber !== 'DFA_8'">{{vm.getDfaString(dfaNumber)}}</label>
+                                <label ng-if="dfaNumber === 'DFA_8'">{{vm.getDfaString(dfaNumber) + ' ' + vm.role['DFA_7'] + ' years (per contract annualised)'}}</label>
+                                <input name="{{dfaNumber}}" type="number" ng-model="vm.role[dfaNumber]"
+                                       ng-show="vm.dfaValidCheck(dfaNumber)" 
+                                       min="0" />
+                                <div class="errorText" ng-show="vm.roleEditForm[dfaNumber].$error.dfaExceed" ng-if="dfaNumber !== 'DFA_7'">
+                                    {{vm.role[dfaNumber]}} is more than half of the Managers allowed
+                                    DFA amount, max available is ${{vm.role.ManagerID[dfaNumber] / 2}}
+                                </div>
+                                <div class="errorText" ng-show="vm.roleEditForm[dfaNumber].$error.dfaExceed" ng-if="dfaNumber === 'DFA_7'">
+                                    {{vm.role[dfaNumber]}} is more than the maximium allowed number of years (5)
+                                </div>
+                                <div ng-if="dfaNumber !== 'DFA_7' && vm.role.ManagerID" class="roleForm-dfaMaxValue-counter">
+                                    Maximum of {{vm.role.ManagerID[dfaNumber] / 2 | currency:undefined:0}}
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <md-divider class='firstDivider'></md-divider>
+            <div class="dfa-form-footer">
+                <div class="button-row">
+                    <md-button type='submit' class="md-raised md-primary"
+                               ng-click="vm.post(vm.roleEditForm)">
+                        {{vm.postButton}}
+                    </md-button>
+                    <a ui-sref="roleList"><md-button class="md-raised">Cancel</md-button></a>
+                </div>
+            </div>
+        </section>
+    </div>
+</form>

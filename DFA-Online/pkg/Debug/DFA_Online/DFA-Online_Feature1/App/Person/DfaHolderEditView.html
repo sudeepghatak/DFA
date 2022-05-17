@@ -1,0 +1,206 @@
+﻿<div ng-include="'../App/dfa-header.html'"></div>
+<form form-focus-invalid-input name="vm.dfaHolderEditForm" novalidate>
+    <section class="dfa-form-container">
+        <section class="dfa-form">
+            <div class="dfa-form-header flex">
+                <i class="material-icons" style="font-size: 3rem">group_add</i><h3>&nbsp; {{vm.Title}}</h3>
+                <md-button type="button" class="md-raised" ng-click="vm.deleteItem($event)"
+                           ng-if="vm.dfaHolder.Id">
+                    <md-icon><i class="material-icons">delete</i></md-icon>
+                    Delete DFA Holder
+                </md-button>
+            </div>
+            <div class="subDel-datePeriodError-container" ng-if="vm.existingDelegations.length > 0">
+                <div class="bold errorText flex errorContainer">
+                    <div class="icon-item">
+                        <i class="material-icons">error_outline</i>
+                    </div>
+                    <div class="flex-item-2">
+                        This person has current or upcoming delegations.
+                        <br />
+                        Please delete these if you want continue
+                    </div>
+                </div>
+                <div class="subDel-repeatedDates-overlaps">
+                    <br />
+                    <h6 class="errorText">The following delegations are upcoming:</h6>
+
+                    <ul>
+                        <li ng-repeat="delegation in vm.existingDelegations" class="errorText flex">
+                            <div class="flex-item-1 subDel-date-sectionID">ID {{delegation.ID}}</div>
+                            <div class="flex-item-2 bold">{{vm.getPersonFromDfaId(delegation.DFAInitiator.Id)}} to {{vm.getPersonFromDfaId(delegation.DFAAssignee.Id)}}</div>
+                            <div class="flex-item-2 datePeriodError-date">From <span class="datePeriodError-date">{{delegation.AwayStartDate | date}}</span> to <span class="datePeriodError-date">{{delegation.AwayEndDate | date}}</span></div>
+                            <div class="flex-item-1"><a ui-sref="subDelegateEdit({subDelegationId: delegation.ID})"><md-button md-no-ink class="md-warn">Edit</md-button></a></div>
+                            <div class="flex-item-1">
+                                <a ng-click="vm.deleteDelegation(delegation.ID, vm.getPersonFromDfaId(delegation.DFAInitiator.Id), vm.getPersonFromDfaId(delegation.DFAAssignee.Id), $index)">
+                                    <md-button md-no-ink class="md-warn">Delete</md-button>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="dfa-form-body">
+    <!--
+**********************
+Be able to select an employee from DFA Holder table
+and
+Be able to select a role from the Role Table.
+
+Then assign a person to a role, and post/update the DFA Holder table.
+**********************
+-->
+                <div ng-if="vm.dfaHolder.Id">
+                    <h4>ID: {{vm.dfaHolder.Id}}</h4>
+                </div>
+                <div class="dfaHolder-form-header dfa-form-header flex" ng-if="!vm.showFields">
+                    <span class="dfa-circle"><span class="dfa-circle-text">1</span></span>
+                    <h3>Begin by Selecting an Employee</h3>
+                </div>
+        <!--1. Choose an Employee-->
+                <div class="dfaHolder-assignEmployee-container">
+                    <h6>Employee to Assign</h6>
+                    <md-autocomplete md-search-text="vm.peopleSearchText"
+                                     md-items="user in vm.querySearch(vm.peopleSearchText)"
+                                     md-item-text="user.Title"
+                                     md-selected-item-change="vm.selectedEmployeeChange(user)"
+                                     md-selected-item="vm.dfaHolder.Name"
+                                     md-min-length="0"
+                                     placeholder="Choose the Employee"
+                                     required>
+                        <md-item-template>
+                            <span md-highlight-text="vm.peopleSearchText" md-highlight-flags="^i">{{user.Title}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            No people matching "{{vm.peopleSearchText}}" were found.
+                        </md-not-found>
+                    </md-autocomplete>
+                </div>
+
+
+                <div ng-if="vm.showFields">
+            <!--2. Choose a Role-->
+                    <h6>Employee Role</h6>
+                    <div class="flex dfaHolder-assignRole-container">
+
+                        <md-input-container flex-gt-sm ng-if="vm.originalRole">
+                            <label>Current Role</label>
+                            <input ng-model="vm.originalRole.RoleName" disabled>
+                        </md-input-container>
+
+                        <div class="assignRole-arrow" ng-if="vm.originalRole">
+                            <i class="material-icons">arrow_forward</i>
+                        </div>
+
+                        <md-input-container flex-gt-sm>
+                            <label>New Role to Assign</label>
+                            <md-select required ng-model="vm.dfaHolder.RoleID" ng-model-options="{trackBy: '$value.Id'}">
+                                <md-option value=""><em>Choose the Role</em></md-option>
+                                <md-option ng-value="role" ng-repeat="role in vm.roles | orderBy: 'RoleName'">{{role.RoleName}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+
+                <!--3. Employement Dates-->
+                    <div class="dfaHolder-employmentDate-container">
+                        <h6>Employment Date</h6>
+                        <div style="font-size: 1.2rem; font-style: italic; margin: 5px 0;">Dates are optional. Required only if the Start Date is filled out.</div>
+                        <div class="flex">
+                            <md-input-container>
+                                <label>Start Date</label>
+                                <md-datepicker ng-model="vm.dfaHolder.EmploymentStartDate" 
+                                               name="dateField"                                            
+                                               md-min-date="vm.minStartDate"
+                                               ng-required="vm.dfaHolder.EmploymentEndDate">
+                                </md-datepicker>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>End Date</label>
+                                <md-datepicker 
+                                    ng-model="vm.dfaHolder.EmploymentEndDate"
+                                    md-min-date="vm.dfaHolder.EmploymentStartDate"
+                                    name="endDateField"
+                                    ng-required="vm.dfaHolder.EmploymentStartDate">
+                                </md-datepicker>
+                            </md-input-container>
+                        </div>
+
+                        <div class="errorText" ng-show="vm.endDateValidation()" 
+                             style="margin-top: -30px;
+                                    padding: 0 0 20px;">
+                            End date can not be before start date</div>
+                    </div>
+                <!--4. Are they a Contractor-->
+                    <div class="dfaHolder-contractor-container">
+                        <md-checkbox aria-label="Is this a contractor at Genesis Energy?" ng-model="vm.dfaHolder.Contractor" class="md-primary dfaholderCheckbox">
+                            This person is a contractor at Genesis Energy
+                        </md-checkbox>
+                    </div>
+                <!--5. Notes for the Table-->
+                    <md-input-container class="md-block dfaHolder-notes-container" md-no-float>
+                        <h6>Notes and Limitations</h6>
+                        <textarea aria-label="Notes" ng-model="vm.dfaHolder.Notes" rows="5" md-select-on-focus placeholder="Notes and Limitations written here are displayed in the Email and within the DFA Holder List."></textarea>
+                    </md-input-container>
+
+                  <!--5. Email Notes for the Table-->
+                  <md-input-container class="md-block dfaHolder-notes-container" md-no-float>
+                    <h6>Email Notes</h6>
+                    <textarea aria-label="Notes" ng-model="vm.dfaHolder.EmailNote" rows="5" md-select-on-focus placeholder="Notes written here only appear in Emails sent. They are not displayed in the DFA Holder List."></textarea>
+                  </md-input-container>
+                <!--6. DFA Values -->
+                    <md-divider ng-if="vm.dfaHolder.RoleID.RoleName"></md-divider>
+                    <div class="dfaHolder-dfa-values" ng-if="vm.dfaHolder.RoleID.RoleName">
+                        <h6><i class="material-icons">work</i> DFA Allocations for {{vm.dfaHolder.RoleID.RoleName}}</h6>
+
+                    <!-- Manager & EGM-->
+                        <div class="flex">
+                            <md-input-container ng-if="vm.dfaHolder.RoleID.ManagerID" flex-gt-sm>
+                                <div>Manager:</div>
+                                <div>
+                                    <span class="bold">{{vm.getPersonFromRoleID(vm.dfaHolder.RoleID.ManagerID).Title}}</span>
+                                    <span>({{vm.getRoleName(vm.dfaHolder.RoleID.ManagerID)}})</span>
+                                 </div>
+                            </md-input-container>
+                            <md-input-container ng-if="vm.dfaHolder.RoleID.EGMID" flex-gt-sm>
+                                <div>EGM:</div>
+                                <div>
+                                <span class="bold">{{vm.getPersonFromRoleID(vm.dfaHolder.RoleID.EGMID).Title}}</span>
+                                <span>({{vm.getRoleName(vm.dfaHolder.RoleID.EGMID)}})</span>
+                                 </div>
+                            </md-input-container>
+                            <md-input-container ng-if="vm.dfaHolder.RoleID.CostCentre" flex-gt-sm>
+                              <div>Cost Centre:</div>
+                              <div>
+                                <span class="bold">{{vm.dfaHolder.RoleID.CostCentre}}</span>
+                              </div>
+                            </md-input-container>
+                        </div>
+
+                        <div class="dfa-values-container" ng-repeat="dfaNumber in vm.dfaNumberList"
+                             ng-if="vm.dfaHolder.RoleID[dfaNumber] > 0 && dfaNumber !== 'DFA_7'">
+                            <label ng-if="dfaNumber !== 'DFA_8'">{{vm.getDfaString(dfaNumber)}}</label>
+                            <label ng-if="dfaNumber === 'DFA_8'">
+                                {{vm.getDfaString(dfaNumber) + ' ' + vm.dfaHolder.RoleID['DFA_7'] + ' years (per contract annualised)'}}
+                            </label>
+                            <div>{{vm.dfaHolder.RoleID[dfaNumber] | currency:undefined:0}}</div>
+                        </div>
+                        <div ng-show="vm.noDFAValues()">This Role does not have any DFA Allocations</div>
+                    </div>
+                </div>
+                <md-divider></md-divider>
+                <div class="dfa-form-footer" ng-if="vm.showFields">
+                    <div class="button-row">
+                        <md-button type='submit' class="md-raised md-primary" ng-click="vm.post(vm.dfaHolderEditForm)">
+                            {{vm.postButton}}
+                        </md-button>
+                        <a ui-sref="home">
+                            <md-button class="md-raised">
+                                Cancel
+                            </md-button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</form>

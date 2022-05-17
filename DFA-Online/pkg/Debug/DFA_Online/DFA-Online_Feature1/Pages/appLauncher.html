@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>App Launcher</title>
+
+    <!-- jquery -->
+    <script src="../Scripts/jquery-1.9.1.js"></script>
+    <script src="../Scripts/jquery-extensions.js"></script>
+
+    <!-- Moment.js-->
+    <script src="../Scripts/moment.min.js"></script>
+    <script src="../Scripts/moment-precise-range.min.js"></script>
+
+    <!-- Angular.js-->
+    <script src="../Scripts/angular/angular.min.js"></script>
+    <script src="../Scripts/angular-cookies/angular-cookies.min.js"></script>
+    <script src="../Scripts/angular-resource/angular-resource.min.js"></script>
+
+    <script src="../Scripts/angular-animate/angular-animate.min.js"></script>
+    <script src="../Scripts/angular-aria/angular-aria.min.js"></script>
+    <script src="../Scripts/angular-messages/angular-messages.min.js"></script>
+
+    <script src="../Scripts/angular-ui-router/angular-ui-router.min.js"></script>
+
+    <!-- extra Angular dependency for 'unique' filter, MUST BE ADDED TO THE MODULE TO WORK-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="../Scripts/angular-material/angular-material.min.js"></script>
+
+    <!-- application scripts -->
+    <script src="../App/app.js"></script>
+
+    <!-- services -->
+    <script src="../common/services/common.services.js"></script>
+    <script src="../common/services/spUrlInfoService.js"></script>
+    <script src="../common/services/environmentVariables.js"></script>
+
+    <!-- controllers - add all controllers here may get: "Argument 'ControllerName' is not a function" if this is not done -->
+    <script src="../App/appLauncher.js"></script>
+    <script src="../App/Dashboard/dashboardController.js"></script>
+
+    <style>
+        html{
+            background-color: #eee;
+            font-size: 2em;
+        }
+
+        .appLauncher {
+            background-color: #eee;
+            color: #dd8546;
+            font-family: Roboto, 'Segoe UI';
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+            .appLauncher .fa {
+                font-size: 5em;
+            }
+    
+    </style>
+
+</head>
+<body ng-app="dfaApp" class="appLauncher">
+    <div ng-controller="AppLauncherController">
+        <div class="launcher-center-container">
+            <h1>DFA Online</h1>
+            <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+            <h2 class="sr-only">Loading...</h2>
+        </div>
+    </div>
+</body>
+</html>

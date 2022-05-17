@@ -1,0 +1,181 @@
+﻿<div ng-include="'../App/dfa-header.html'"></div>
+<form form-focus-invalid-input name="vm.subDelegateForm" novalidate>
+    <section class="dfa-form-container">
+        <section class="dfa-form">
+            <section class="dfa-form-header flex">
+                <h3>{{vm.Title}}</h3>
+                <md-button type="button" class="md-raised" ng-click="vm.deleteItem($event)"
+                           ng-if="vm.subDelegation.Id">
+                    <md-icon><i class="material-icons">delete</i></md-icon>
+                    Remove Sub Delegation
+                </md-button>
+            </section>
+            <h4 ng-if="vm.subDelegation.Id">ID: {{vm.subDelegation.Id}}</h4>
+            <section class="dfa-form-body">
+        <!--Admin Section -->
+                <div class="subDel-person-section" ng-show="vm.userIsAdmin">
+                    <div class="flex">
+                        <span class="dfa-circle"><span class="dfa-circle-text">1 </span></span>
+                        <span>[Admin Only] Select Sub-Delegator</span>
+                        <div style="margin-top: 5px;">
+                            <i class="material-icons">help_outline</i>
+                            <md-tooltip>This is the person who is delegating their DFA away.</md-tooltip>
+                        </div>
+                    </div>
+                    <md-input-container class="md-block" flex-gt-sm md-no-float>
+                        <md-select ng-model="vm.subDelegation.DFAInitiator"
+                                   aria-label="SubDelegation Initiator"
+                                   ng-model-options="{trackBy: '$value.Id'}">
+                            <md-option ng-value="person" ng-repeat="person in vm.allDfaHolders">{{person.Name.Title}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+        <!-- DFA Assigneee -->
+                <div class="subDel-person-section">
+                    <div class="flex">
+                        <span class="dfa-circle"><span class="dfa-circle-text" ng-if="vm.userIsAdmin">2</span><span ng-if="!vm.userIsAdmin" class="dfa-circle-text">1</span></span>
+                        <span>Who are you sub-delegating your DFA to?</span>
+                        <div style="margin-top: 5px;">
+                            <i class="material-icons">help_outline</i>
+                            <md-tooltip>This is the person who will inherit {{vm.subDelegation.DFAInitiator.Name.Title}}'s <span ng-if="!vm.subDelegation.DFAInitiator">the delegator's</span>DFA.</md-tooltip>
+                        </div>
+                    </div>
+                    <md-input-container class="md-block" flex-gt-sm md-no-float>
+                        <md-select ng-model="vm.subDelegation.DFAAssignee" placeholder="e.g. Hamish Parbhu"
+                                   ng-model-options="{trackBy: '$value.Id'}" required>
+                            <md-option value=""><em>Choose a person</em></md-option>
+                            <md-option ng-value="person" ng-repeat="person in vm.allDfaHolders | filter: vm.removeSelf">{{person.Name.Title}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+            <!-- Start & End Date for Delegation-->
+                <div class="subDel-date-section">
+                    <div class="flex">
+                        <span class="dfa-circle"><span ng-if="vm.userIsAdmin" class="dfa-circle-text">3</span><span ng-if="!vm.userIsAdmin" class="dfa-circle-text">2</span></span>
+                        <span>How long will you be away for?</span>
+                    </div>
+                    <div class="flex">
+                        <md-input-container>
+                            <label>Start Date</label>
+                            <md-datepicker ng-model="vm.subDelegation.AwayStartDate"
+                                           name="dateField"
+                                           ng-change="vm.calcSubDelDuration()"
+                                           required
+                                           md-min-date="vm.minStartDate"></md-datepicker>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>End Date</label>
+                            <md-datepicker ng-model="vm.subDelegation.AwayEndDate"
+                                           name="endDateField"
+                                           ng-change="vm.calcSubDelDuration()"
+                                           required
+                                           md-min-date="vm.subDelegation.AwayStartDate"></md-datepicker>
+                        </md-input-container>
+                        <div class="errorText" ng-show="vm.endDateValidation()">End date can not be before start date</div>
+                    </div>
+                </div>
+            <!-- Checkbox Accepting Terms & Conditions -->
+                <div class="subDel-policy-section">
+                    <md-checkbox class="md-primary" ng-model="vm.subDelegation.acceptedDFAPolicy" aria-label="I understand all legal consequences"
+                                 name="termsField" required>
+                        <span ng-if="vm.userIsAdmin && (vm.subDelegation.DFAInitiator.Name.Title !== vm.currentUser.Title)">
+                            I confirm I have authorisation to action this on behalf of the DFA holder.
+                        </span>
+                        <span ng-if="!vm.userIsAdmin || vm.subDelegation.DFAInitiator.Name.Title === vm.currentUser.Title">
+                            I accept my responsibilities under our Delegations of Authority (DFA) Policy
+                        </span>
+                    </md-checkbox>
+                    <div class="subDel-policy-text">
+                        <div class="flex">
+                            <div>Note:</div>
+                            <div>
+                                All such sub-delegations must be in accordance with the Delegations of Authority (DFA) policy.
+                                <br />
+                                You may delegate your full financial authority to direct reports to cover temporary absences, for a defined period of time.
+                            </div>
+                        </div>
+                        <div class="subDel-policy-link"><a href="https://genesisenergynz.sharepoint.com/fin/Pages/Financial%20Control/Delegated-Financial-Authority.aspx" target="_blank">Our DFA Policy</a></div>
+                    </div>
+                    <div ng-messages="vm.subDelegateForm.termsField.$error" md-auto-hide="true" ng-hide="true">
+                        <!-- CHANGE FOR RELEASE-->
+                        <div>
+                            You must accept the terms before you can proceed.
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <md-divider></md-divider>
+            <section class="subDel-dfa-section">
+                <h4>
+                    Your DFA <span ng-if="vm.subDelegation.DFAAssignee.Name.Title">
+                        will be allocated to
+                        <span style="color:#3f51b5 ">
+                            {{vm.subDelegation.DFAAssignee.Name.Title}}
+                            <span ng-if="vm.subDelegation.AwayStartDate && vm.subDelegation.AwayEndDate">
+                                for {{vm.totalSubDelDuration}}
+                            </span>
+                        </span>
+                    </span>
+                </h4>
+                <div class="flex">
+                    <md-input-container ng-if="vm.currentDfaHolder[0].RoleID.RoleName" flex-gt-sm>
+                        <div class="flex">
+                            <span class="bold">Role:</span> {{vm.subDelegation.DFAInitiator.RoleID.RoleName}}<!--{{vm.subDelegation.DFAInitiator[0].RoleID.RoleName}}-->
+                            <div style="margin-top: -5px; margin-left: 10px;">
+                                <i class="material-icons">help_outline</i>
+                                <md-tooltip>This is {{vm.subDelegation.DFAInitiator.Name.Title}}'s <span ng-if="!vm.subDelegation.DFAInitiator">the delegator's</span>role.</md-tooltip>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div class="dfa-section-dfaValues">
+                    <!-- NG REPEAT for DFA Values for Initiator-->
+                    <div ng-repeat="dfaNumber in vm.dfaNumberList" class="dfa-values-container"
+                         ng-if="vm.subDelegation.DFAInitiator.RoleID[dfaNumber] > 0  && dfaNumber !== 'DFA_7'">
+                        <label ng-if="dfaNumber !== 'DFA_8'">{{vm.getDfaString(dfaNumber)}}</label>
+                        <label ng-if="dfaNumber === 'DFA_8'">
+                            {{vm.getDfaString(dfaNumber) + ' ' + vm.subDelegation.DFAInitiator.RoleID['DFA_7'] + ' years (per contract annualised)'}}
+                        </label>
+                        <div>{{vm.subDelegation.DFAInitiator.RoleID[dfaNumber] | currency:undefined:0}}<!--{{vm.currentDfaHolder[0].RoleID[dfaNumber]}}--></div>
+                    </div>
+                </div>
+            </section>
+            <div class="subDel-datePeriodError-container" ng-if="vm.errors">
+                <div  class="bold errorText flex errorContainer">
+                    <div class="icon-item">
+                        <i class="material-icons">error_outline</i>
+                    </div>
+                    <div class="flex-item-2">
+                        There is an overlap with your submission.
+                        <br />
+                        Change the current Start and End Dates. Or Edit an existing entry to change it.
+                    </div>
+                </div>
+                <div class="subDel-repeatedDates-overlaps">
+                    <br />
+                    <h6 class="errorText">You've already delegated your DFA to the following:</h6>
+
+                    <ul>
+                        <li ng-repeat="delegation in vm.existingDelegations | orderBy: 'AwayStartDate'" class="errorText flex">
+                            <div class="flex-item-1 subDel-date-sectionID">ID {{delegation.ID}}</div>
+                            <div class="flex-item-2 bold">{{vm.getPersonFromDfaId(delegation.DFAAssignee.Id)}}</div>
+                            <div class="flex-item-2 datePeriodError-date">From <span class="datePeriodError-date">{{delegation.AwayStartDate | date}}</span> to <span class="datePeriodError-date">{{delegation.AwayEndDate | date}}</span></div>
+                            <div class="flex-item-1"><a ui-sref="subDelegateEdit({subDelegationId: delegation.ID})"><md-button md-no-ink class="md-warn">Edit</md-button></a></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <md-divider></md-divider>
+            <section class="dfa-form-footer">
+                <div class="button-row">
+                    <md-button type='submit' class="md-raised md-primary" ng-click="vm.post(vm.subDelegateForm)">
+                        {{vm.postButton}}
+                    </md-button>
+                    <a ui-sref="home"><md-button class="md-raised">Cancel</md-button></a>
+                </div>
+            </section>
+
+        </section>
+    </section>
+</form>

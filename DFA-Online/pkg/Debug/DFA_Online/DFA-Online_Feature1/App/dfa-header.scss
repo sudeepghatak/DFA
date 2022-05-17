@@ -1,0 +1,136 @@
+﻿.dfa-header {
+    background-color: $primaryColor;
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);
+    z-index: 61;
+    position: relative;
+
+    .brand {
+        text-align: center;
+    }
+
+    .brand-subheader {
+        font-weight: lighter;
+        font-size: 1.2rem;
+        font-style: italic;
+        margin: -3px;
+        padding: 0;
+    }
+
+    section {
+        margin: 0px 15px;
+    }
+
+    section section {
+        margin: 0;
+        padding: 10px 15px;
+        display: flex;
+    }
+
+    section section div {
+        font: Bold 2rem $primaryFont;
+        color: #fff;
+        padding: 2px 10px;
+    }
+
+    .header-menu-button {
+        position: absolute;
+        padding: 0px 30px;
+        margin-top: 0px;
+        cursor: pointer;
+        outline: 0;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+    }
+
+    .header-menu-button:hover {
+        background-color: rgba(158,158,158,0.2);
+        outline: 0;
+    }
+
+    .header-menu-button i,
+    .header-menu-button span {
+        display: block;
+        text-align: center;
+        font-size: 3rem;
+    }
+
+    .header-menu-button span {
+        font-size: 1.2rem;
+        font-weight: lighter;
+    }
+
+    section section div:last-child {
+        margin: auto;
+    }
+}
+
+.dfa-sidebar {
+    position: fixed !important;
+    top: 0;
+    padding-top: 58px;
+    box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+    background-color: #fff;
+    width: 500px;
+    height: 100%;
+    z-index: 60;
+
+    section {
+        padding: 20px;
+
+        .mydfa-header {
+            padding: 10px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 2rem;
+            color: $secondaryColor;
+        }
+
+        .mydfa-header-header {
+            font-weight: bold;
+            font-size: 1.6rem !important;
+            text-align: center !important;
+            color: #265cba;
+        }
+
+        .mydfa-content {
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+
+        .mydfa-content div:first-child {
+            text-align: left;
+            font-size: 1.2rem;
+        }
+
+        .dfa-container {
+            display: flex;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(0,0,0,.08);
+            margin-bottom: 1px;
+
+            div {
+                padding: 7px 4px;
+                flex: 2;
+                font-size: 1.4rem;
+                margin: auto;
+                text-align: right;
+            }
+            //comments
+        }
+    }
+}
+
+.md-sidenav-backdrop{
+    position: fixed !important;
+}
+
+.dfa-legalText {
+    text-align: justify;
+    font-size: 12px;
+    padding-top: 20px;
+}

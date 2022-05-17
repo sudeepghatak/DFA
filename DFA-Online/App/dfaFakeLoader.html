@@ -1,0 +1,28 @@
+﻿<section class="relative">
+    <div class="window-overlay"></div>
+</section>
+<section class="dfa-loader">
+    <section class="dfa-fakeLoader">
+        <div class="fakeLoader-container">
+            <div class="fakeLoader-spinner">
+                <md-progress-circular 
+                                      md-mode="indeterminate"
+                                      ng-if="!complete">
+                </md-progress-circular>
+                <md-icon 
+                         style="width: 48px; 
+                                height: 48px; 
+                                font-size: 48px;
+                                margin-left: 10px;
+                                color: green;
+                                border: 5px solid;
+                                padding: 5px;
+                                border-radius: 50%;"
+                         ng-if="complete">
+                    done
+                </md-icon>
+            </div>
+            <div class="fakeLoader-text">{{loadingText}}</div>
+        </div>
+    </section>
+</section>

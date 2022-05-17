@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CA6849B9-74FC-4369-9368-8E85216CDF95}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DFA_Online</RootNamespace>
+    <AssemblyName>DFA-Online</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetOfficeVersion>16.1</TargetOfficeVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{C1CDDADD-2546-481F-9697-4EA41081F2FC};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <MinimumOfficeToolsVersion>12.2</MinimumOfficeToolsVersion>
+    <IncludeAssemblyInPackage>False</IncludeAssemblyInPackage>
+    <ProjectMode>SharePointApp</ProjectMode>
+    <AppFeaturePartId>{6f76b434-d0c4-4ec7-9b54-01382692bbfa}</AppFeaturePartId>
+    <WspPartId>{2d692a80-2d4d-44d1-8a90-64f2bf0bb69d}</WspPartId>
+    <WorkflowPartId>{fe92e296-fa94-4de4-96ef-ba5273d865ff}</WorkflowPartId>
+    <CspkgPartId>{e8280759-2089-4352-a6f2-5483761eddfa}</CspkgPartId>
+    <SqlPackagePartId>{5c3f3184-5c6d-4aad-8b82-84f90e67bb5f}</SqlPackagePartId>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App\Dashboard\dashboard.scss" />
+    <None Include="App\dfa-header.scss" />
+    <None Include="App\dfa-style.scss" />
+    <None Include="App\dfaFakeLoader.scss" />
+    <None Include="App\ie-specific-stylesheet.scss" />
+    <None Include="App\Person\dfaHolderEditView.scss" />
+    <None Include="App\Person\dfaHolderListView.scss" />
+    <None Include="App\Roles\Role.scss" />
+    <None Include="App\Roles\roleList.scss" />
+    <None Include="App\SubDelegate\subDelegate.scss" />
+    <None Include="Content\AppDetailsList\AppDetailsListInstance\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{9eba0e79-63a2-4325-b26a-0d47afbac565}</SharePointProjectItemId>
+    </None>
+    <None Include="Content\AppDetailsList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a261c5fd-e552-423d-9933-478f740d20fa}</SharePointProjectItemId>
+    </None>
+    <None Include="Content\cssReset.scss" />
+    <None Include="packages.config" />
+    <None Include="Pages\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{87f24e1b-7887-41ea-8285-ece1364c7cd1}</SharePointProjectItemId>
+    </None>
+    <Content Include="android-chrome-96x96.png" />
+    <Content Include="apple-touch-icon.png" />
+    <Content Include="App\app.js" />
+    <Content Include="App\appLauncher.js" />
+    <Content Include="App\Dashboard\dashboard.css">
+      <DependentUpon>dashboard.scss</DependentUpon>
+    </Content>
+    <Content Include="App\Dashboard\dashboard.min.css">
+      <DependentUpon>dashboard.css</DependentUpon>
+    </Content>
+    <Content Include="App\Dashboard\DashboardController.js" />
+    <Content Include="App\Dashboard\dashboardView.html" />
+    <Content Include="App\dfa-header.html" />
+    <Content Include="App\dfa-style.css">
+      <DependentUpon>dfa-style.scss</DependentUpon>
+    </Content>
+    <Content Include="App\dfa-style.min.css">
+      <DependentUpon>dfa-style.css</DependentUpon>
+    </Content>
+    <Content Include="App\dfaFakeLoader.html" />
+    <Content Include="App\Person\DfaHolderEditController.js" />
+    <Content Include="App\Person\DfaHolderEditView.html" />
+    <Content Include="App\Person\DfaHolderListController.js" />
+    <Content Include="App\Person\DfaHolderListView.html" />
+    <Content Include="App\Roles\RoleEditController.js" />
+    <Content Include="App\Roles\roleEditView.html" />
+    <Content Include="App\Roles\RoleListController.js" />
+    <Content Include="App\Roles\roleListView.html" />
+    <Content Include="App\SubDelegate\SubDelegateEditController.js" />
+    <Content Include="App\SubDelegate\subDelegateEditForm.html" />
+    <Content Include="App\SubDelegate\subDelegateListController.js" />
+    <Content Include="App\SubDelegate\subDelegateListView.html" />
+    <Content Include="browserconfig.xml" />
+    <Content Include="common\directives\format.js" />
+    <Content Include="common\directives\formFocusInvalidInput.js" />
+    <Content Include="common\emailTemplates\assignRoleCeoEgmEmailTemplate.html" />
+    <Content Include="common\emailTemplates\assignRoleCompleteEmailTemplate.html" />
+    <Content Include="common\emailTemplates\assignRoleDeclinedEmailTemplate.html" />
+    <Content Include="common\emailTemplates\assignRoleDeletedEmailTemplate.html" />
+    <Content Include="common\emailTemplates\assignRoleDfaHolderEmailTemplate.html" />
+    <Content Include="common\emailTemplates\roleCreatedEmailTemplate.html" />
+    <Content Include="common\emailTemplates\roleDeletedEmail.html" />
+    <Content Include="common\emailTemplates\sampleSignatureEmailTemplate.html" />
+    <Content Include="common\emailTemplates\subDelegateEmailTemplate.html" />
+    <Content Include="common\emailTemplates\testEmailTemplate.html" />
+    <Content Include="common\services\common.services.js" />
+    <Content Include="common\services\dfaDataService.js" />
+    <Content Include="common\services\emailService.js" />
+    <Content Include="common\services\environmentVariables.js" />
+    <Content Include="common\services\peopleResource.js" />
+    <Content Include="common\services\roleResource.js" />
+    <Content Include="common\services\spUrlInfoService.js" />
+    <Content Include="common\services\subDelegateResource.js" />
+    <Content Include="common\services\userService.js" />
+    <Content Include="Content\angular-material\angular-material.css" />
+    <Content Include="Content\angular-material\angular-material.layout-attributes.css" />
+    <Content Include="Content\angular-material\angular-material.layout-attributes.min.css" />
+    <Content Include="Content\angular-material\angular-material.layouts.css" />
+    <Content Include="Content\angular-material\angular-material.layouts.ie_fixes.css" />
+    <Content Include="Content\angular-material\angular-material.layouts.min.css" />
+    <Content Include="Content\angular-material\angular-material.min.css" />
+    <Content Include="Content\AppDetailsList\AppDetailsListInstance\Elements.xml" />
+    <Content Include="Content\AppDetailsList\Elements.xml" />
+    <Content Include="Content\AppDetailsList\Schema.xml" />
+    <Content Include="Elements.xml" />
+    <Content Include="favicon-16x16.png" />
+    <Content Include="favicon-32x32.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="mstile-150x150.png" />
+    <Content Include="Pages\appLauncher.html" />
+    <Content Include="Pages\Elements.xml" />
+    <None Include="Scripts\angular-animate\angular-animate.min.js.map" />
+    <None Include="Scripts\angular-aria\angular-aria.min.js.map" />
+    <None Include="Scripts\angular-cookies\angular-cookies.min.js.map" />
+    <None Include="Scripts\angular-messages\angular-messages.min.js.map" />
+    <None Include="Scripts\angular-resource\angular-resource.min.js.map" />
+    <None Include="SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{50b4196d-c2ab-4f28-aa27-6b671d28f92a}</SharePointProjectItemId>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\jquery-1.9.1.min.map" />
+    <None Include="Scripts\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5c3f3184-5c6d-4aad-8b82-84f90e67bb5f}</SharePointProjectItemId>
+    </None>
+    <Content Include="Pages\index.html" />
+    <Content Include="safari-pinned-tab.svg" />
+    <Content Include="Scripts\angular-animate\angular-animate.js" />
+    <Content Include="Scripts\angular-animate\angular-animate.min.js" />
+    <Content Include="Scripts\angular-aria\angular-aria.js" />
+    <Content Include="Scripts\angular-aria\angular-aria.min.js" />
+    <Content Include="Scripts\angular-cookies\angular-cookies.js" />
+    <Content Include="Scripts\angular-cookies\angular-cookies.min.js" />
+    <Content Include="Scripts\angular-material\angular-material-mocks.js" />
+    <Content Include="Scripts\angular-material\angular-material.js" />
+    <Content Include="Scripts\angular-material\angular-material.min.js" />
+    <Content Include="Scripts\angular-messages\angular-messages.js" />
+    <Content Include="Scripts\angular-messages\angular-messages.min.js" />
+    <Content Include="Scripts\angular-resource\angular-resource.js" />
+    <Content Include="Scripts\angular-resource\angular-resource.min.js" />
+    <Content Include="Scripts\angular-ui-router\angular-ui-router.js" />
+    <Content Include="Scripts\angular-ui-router\angular-ui-router.min.js" />
+    <Content Include="Scripts\angular\angular.js" />
+    <Content Include="Scripts\angular\angular.min.js" />
+    <Content Include="Scripts\Elements.xml" />
+    <Content Include="Scripts\App.js" />
+    <Content Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery-extensions.js" />
+    <Content Include="Scripts\moment-precise-range.min.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\_references.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{92c4c116-1d01-42cf-b366-ddc8482bcdf1}</SharePointProjectItemId>
+    </None>
+    <Content Include="Content\Elements.xml" />
+    <Content Include="Content\App.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\AppIcon.png">
+      <OpcRelationship>manifest-icon</OpcRelationship>
+    </Content>
+    <Content Include="Images\Elements.xml" />
+    <None Include="Images\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{260c6575-d777-4e70-824b-fb49ec05b4c4}</SharePointProjectItemId>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Package\Package.package">
+      <PackageId>{cb870880-7819-4cf6-9855-a1b9532cb9cc}</PackageId>
+    </None>
+    <None Include="Package\Package.Template.xml">
+      <DependentUpon>Package.package</DependentUpon>
+    </None>
+    <None Include="Features\Feature1\Feature1.feature">
+      <FeatureId>{6eb8b151-491c-4954-9cc3-27bad67c6cd0}</FeatureId>
+    </None>
+    <None Include="Features\Feature1\Feature1.Template.xml">
+      <DependentUpon>Feature1.feature</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <AppManifestFile Include="AppManifest.xml">
+      <SubType>Designer</SubType>
+    </AppManifestFile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" Condition="'$(VSToolsPath)' != ''" />
+</Project>

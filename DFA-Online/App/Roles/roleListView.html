@@ -1,0 +1,90 @@
+﻿<div ng-include="'../App/dfa-header.html'"></div>
+<div class="role-list-header">
+    <h4 class="">{{::vm.Title}}</h4>
+    <div class="margin-left-auto" style="display:inline-flex">
+      <a class="" ui-sref="roleEdit({roleId: ''})"><md-button class="md-raised md-primary flex"><i class="material-icons">add_circle</i>&nbsp;Create Role</md-button></a>
+      <a class="" ng-if="vm.userIsAdmin" ng-href="{{vm.sharePointLink}}" target="_blank"><md-button class="md-raised md-primary">View In SharePoint</md-button></a>    
+    </div>
+
+</div>
+<div class="dfa-searchbar">
+    <md-input-container class="md-block">
+        <!-- Use floating placeholder instead of label -->
+        <md-icon><i class="material-icons">search</i></md-icon>
+        <input ng-model="searchRole" type="text" placeholder="Search Role">
+    </md-input-container>
+</div>
+<section class="dfa-list-container">
+    
+    <section class="dfa-generic-list">
+        <section class="generic-list-header">
+            <div>#<!--Role Id--></div>
+            <div class="flex">
+                <section class="flex-item-2">Role Name</section>
+                <section class="flex-item-1"></section>
+            </div>
+            <div>Manager</div>
+            <div>EGM</div>
+            <div style="margin:inherit;"></div>
+        </section>
+        <section class="generic-list-body">
+            <section class="generic-list-item" ng-repeat="role in vm.roles | filter: {RoleName: searchRole}">
+                <section class="repeated-item-container">
+                    <div>{{$index + 1}}<!--//{{role.Id}}--></div>
+                    <div class="roleName flex">
+                        <section class="flex-item-2" style="margin:auto;">{{role.RoleName}}</section>
+                        <section class="flex-item-1"><md-button md-no-ink class="md-primary" ng-click="viewDFA = !viewDFA">View DFA</md-button></section>
+                    
+                    </div>
+                    <div class="flex-item-1">{{vm.getRoleName(role.ManagerID)}}</div>
+                    <div class="flex-item-1">{{vm.getRoleName(role.EGMID)}}</div>
+                    <div><a ui-sref="roleEdit({roleId: role.Id})"><md-button md-no-ink class="md-primary">Edit Role</md-button></a></div>
+                </section>
+                <section>
+                    <section class="relative">
+                        <div class="window-overlay" ng-show="viewDFA" ng-click="viewDFA = !viewDFA"></div>
+                        <div class="window" ng-show="viewDFA">
+                            <div class="window-container">
+                              <!-- Window Header -->
+                                <div class="window-header flex">
+                                  <div class="flex-75">
+                                    {{role.RoleName}}
+                                  </div>
+                                  <div class="flex-25 window-header-label" ng-if="role.CostCentre">
+                                    Cost Centre: <span class="bold">{{role.CostCentre}}</span>
+                                  </div>
+                                </div>
+                                <!-- Window Content-->
+                                <div class="window-content">
+                                    <br />
+                                    <h6>Allocated DFA</h6>
+                                    <div class="allocated-dfa-container">
+                                        <div ng-repeat="dfaNumber in role.dfaValueObject" class="dfa-values-container"
+                                             ng-if="role[dfaNumber.dfaKey] > 0  && dfaNumber.dfaKey !== 'DFA_7'">
+                                            <label ng-if="dfaNumber.dfaKey !== 'DFA_8'">{{dfaNumber.dfaString}}</label>
+                                            <label ng-if="dfaNumber.dfaKey === 'DFA_8'">
+                                                {{dfaNumber.dfaString + ' ' + role['DFA_7'] + ' years (per contract annualised)'}}
+                                            </label>
+                                            <div>{{dfaNumber.dfaValue | currency:undefined:0}}<!--<span ng-if="dfaNumber.dfaValue === 0">$0</span>--></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <md-divider></md-divider>
+                                <div class="window-footer">
+                                    <md-button class="md-raised md-primary" ng-click="viewDFA = !viewDFA">
+                                        Close
+                                    </md-button>
+                                </div>
+                            </div>
+                        </div>
+                    </section> <!-- End of Window Pop-up Content -->
+                </section>
+            </section>
+        </section>
+        <section class="generic-list-footer">
+
+        </section>
+    </section>
+</section>
+

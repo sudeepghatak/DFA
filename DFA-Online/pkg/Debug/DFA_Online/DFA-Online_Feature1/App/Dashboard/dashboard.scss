@@ -1,0 +1,168 @@
+﻿.dfa-body {
+    max-width: $maxBodyWidth;
+    padding: 20px 0;
+    margin: auto;
+
+    .page-header{
+        font-weight:bold;
+        font-size: 1.6rem;
+    }
+}
+
+.tile-container {
+    display: flex;
+    padding: 35px 0;
+
+    a{
+        color: inherit;
+        text-decoration: none;
+    }
+}
+
+.dfa-tile {
+    width: 250px;
+    margin: 0 7px;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    background-color: $secondaryColor;
+    color: #fff;
+    cursor: pointer;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+    .dfa-tile-icon {
+        font-size: 3.2rem;
+    }
+
+    .tile-icon-container {
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        padding: 10px;
+        background-color: #fff;
+        font-size: 2rem;
+        display:flex;
+        margin: auto;
+
+        i {
+            font-size: 3.5rem;
+            color: $defaultColor;
+            margin: auto;
+        }
+    }
+
+    .dfa-tile-text {
+        padding-top: 10px;
+        font-weight: bold;
+        font-size: 1.6rem;
+    }
+}
+
+.dfa-tile:hover {
+    background-color: rgba($secondaryColor, 0.8);
+}
+
+
+
+.notification-header {
+    display: flex;
+    padding: 10px 0;
+    background-color: #fff;
+
+    a {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+    }
+
+    div {
+        display: flex;
+        margin: auto;
+    }
+
+    span {
+        margin: auto;
+    }
+
+    .notification-number {
+        padding: 3px;
+    }
+
+    .notification-text {
+        color: #265cba;
+        font-weight: bold;
+    }
+
+    .notification-icon {
+        padding: 5px;
+        border-radius: 50%;
+        margin-right: 10px;
+        background-color: #fff;
+        box-shadow: 0 0 1px 1px rgba(0,0,0,0.15);
+    }
+
+    .notification-close-icon {
+        cursor: pointer;
+    }
+
+    .notification-close-icon i {
+        font-size: 1.6rem;
+        border-radius: 50%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        margin-left: 5px;
+    }
+}
+
+
+.notification-container {
+    padding: 35px 0;
+}
+
+.notification-item {
+    display: flex;
+    padding: 5px 15px;
+    padding-top: 15px;
+    background-color: #fff;
+    border-bottom: 1px solid $secondaryColor;
+}
+
+.notification-item-text {
+    .text-header {
+        font-weight: bold;
+
+        span:last-child {
+            color: $secondaryColor;
+        }
+    }
+
+    .text-status {
+        display: flex;
+
+        .approval-text {
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+
+        .md-button {
+            color: $secondaryColor !important;
+            border: 1px solid !important;
+            line-height: 2rem !important;
+        }
+
+        span, md-button {
+            margin: auto;
+        }
+    }
+}
+
+.notification-item-buttons {
+    margin: auto 0 auto auto;
+    text-align: right;
+}

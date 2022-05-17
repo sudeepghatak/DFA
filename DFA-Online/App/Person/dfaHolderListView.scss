@@ -1,0 +1,179 @@
+﻿.dfa-people {
+    /*padding: 15px;*/
+
+    h4 {
+        font-weight: bold;
+        font-size: 3rem;
+        margin: auto 0;
+    }
+}
+
+.dfa-people-list-container {
+    max-width: 1400px;
+    margin: auto;
+    font-size: 1.4rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    background: #fff;
+}
+
+.dfa-people-list-repeatedItem:nth-child(odd) {
+    background-color: #f0f0f0;
+}
+
+.dfa-people-list div {
+    flex: 2;
+    text-align: center;
+    margin: auto;
+}
+
+.dfa-people-list div:first-child {
+    flex: 1;
+}
+
+.dfa-people-list-repeatedItem {
+    border-bottom: 1px solid #ccc;
+}
+
+.dfa-people-list-header {
+    font-weight: bold;
+    font-size: 1.6rem;
+    padding: 15px 0;
+}
+
+.window-container {
+  padding: 20px;
+
+  .window-header {
+    font-size: 2.4rem;
+    font-weight: bold;
+  }
+
+  .window-content {
+    padding: 10px 0;
+
+    .content-label {
+      font-size: 1.4rem;
+      font-style: italic;
+    }
+
+    .flex-item-1 {
+      div:last-child {
+        font-weight: bold;
+      }
+    }
+
+    .content-manager {
+      display: flex;
+      padding: 10px 0;
+
+      div:first-child {
+        padding: 5px 0;
+      }
+
+      div:last-child {
+        padding: 5px;
+        font-weight: bold;
+      }
+    }
+
+    h6 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .allocated-dfa-container {
+      @extend .window-content-panel;
+      div {
+        padding: 2px;
+      }
+    }
+  }
+
+  .window-footer {
+    text-align: center;
+  }
+}
+
+.dfaHolderList-subDel-flexColumns {
+    .subDel-icon-col {
+        flex: 1;
+    }
+
+    .plane {
+        border-radius: 50%;
+        border: 0.1px solid;
+        padding: 5px;
+    }
+
+    .subDel-text-col {
+        flex: 4;
+        margin: auto;
+    }
+
+    .subDel-icon-indicator {
+        text-align: center;
+        cursor: pointer;
+
+        figure {
+            font-size: 0.9rem !important;
+        }
+
+        .subDel-icon-assignee,
+        .subDel-icon-initiator {
+            color: #fa3e3e;
+        }
+    }
+}
+
+.window-subDel-section {
+    background-color: hsla(45, 100%, 70%, 0.38);
+    padding: 15px 10px;
+    border-radius: 10px;
+
+    ul {
+        list-style-type: initial;
+        padding: 0 30px;
+
+        li {
+            padding: 5px;
+        }
+    }
+
+    .subDel-dates-container {
+        font-size: 1.4rem;
+        font-style: italic;
+    }
+}
+
+.dfaNumberInput{
+    max-width: 400px;
+}
+
+.filters-container {
+    .filters-dfaHolder-checkbox {
+        margin-left: auto;
+        margin-right: 20px;
+    }
+
+    .filters-dfaHolder-egmFilter {
+        min-width: 350px;
+        max-width: 600px;
+    }
+
+    .filters-dfaHolder-costCentre {
+        min-width: 350px;
+        max-width: 600px;
+    }
+
+    .filters-dfaHolder-subDelSearchContainer {
+        margin-bottom: -25px;
+
+        button {
+            max-height: 20px;
+            padding-top: 0;
+        }
+    }
+}
+

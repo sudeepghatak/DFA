@@ -1,0 +1,7 @@
+C:\dev\Genesis_Energy-dfa-f802762f3d1a\DFA\DFA-Online\bin\Debug\DFA-Online.pdb
+C:\dev\Genesis_Energy-dfa-f802762f3d1a\DFA\DFA-Online\obj\Debug\DFA-Online.dll
+C:\dev\Genesis_Energy-dfa-f802762f3d1a\DFA\DFA-Online\obj\Debug\DFA-Online.pdb
+C:\Users\sudeep.ghatak\Downloads\DFA-Online\bin\Debug\DFA-Online.pdb
+C:\Users\sudeep.ghatak\Downloads\DFA-Online\obj\Debug\DFA-Online.csproj.CoreCompileInputs.cache
+C:\Users\sudeep.ghatak\Downloads\DFA-Online\obj\Debug\DFA-Online.dll
+C:\Users\sudeep.ghatak\Downloads\DFA-Online\obj\Debug\DFA-Online.pdb
